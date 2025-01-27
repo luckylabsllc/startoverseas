@@ -143,12 +143,9 @@ const Index = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Plan your move, explore the world, and thrive abroad with our all-in-one platform
           </p>
-          <div className="flex gap-4 justify-center">
+          <div className="flex justify-center">
             <Button size="lg" className="text-lg px-8 py-6" asChild>
               <Link to="/signup">Get Started <ArrowRight className="ml-2" /></Link>
-            </Button>
-            <Button variant="outline" size="lg" className="text-lg" asChild>
-              <Link to="/learn-more">Learn More</Link>
             </Button>
           </div>
         </section>
