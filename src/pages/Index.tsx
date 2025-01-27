@@ -134,7 +134,7 @@ const Index = () => {
         </div>
       </header>
 
-      <div className="space-y-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="space-y-20">
         {/* Hero Section */}
         <section className="text-center py-20 space-y-6">
           <h1 className="text-6xl font-bold tracking-tight">
@@ -151,7 +151,7 @@ const Index = () => {
         </section>
 
         {/* Tools Preview Section */}
-        <section className="relative py-20 -mx-4 sm:-mx-6 lg:-mx-8">
+        <section className="relative py-20 w-screen -ml-[50vw] left-1/2">
           <div className="absolute inset-0 bg-[#f8f9fa] mix-blend-multiply bg-opacity-50" style={{ backgroundColor: 'rgba(234, 56, 76, 0.03)' }}></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
             <div className="text-center">
@@ -195,41 +195,44 @@ const Index = () => {
         </section>
 
         {/* Pricing Section */}
-        <section className="space-y-10">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold">Start Your Journey with the Perfect Plan</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {pricingTiers.map((tier) => (
-              <Card 
-                key={tier.name} 
-                className={`relative ${tier.highlighted ? 'border-primary shadow-lg' : ''}`}
-              >
-                <CardHeader>
-                  <CardTitle className="flex flex-col items-center">
-                    <span className="text-2xl">{tier.name}</span>
-                    <div className="mt-4">
-                      <span className="text-4xl font-bold">{tier.price}</span>
-                      <span className="text-muted-foreground">{tier.period}</span>
-                    </div>
-                  </CardTitle>
-                  <p className="text-center text-muted-foreground">{tier.description}</p>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <ul className="space-y-3">
-                    {tier.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2">
-                        <Star className="w-4 h-4 text-primary" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button className="w-full" asChild>
-                    <Link to={tier.ctaPath}>{tier.cta}</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+        <section className="relative py-20 w-screen -ml-[50vw] left-1/2">
+          <div className="absolute inset-0 bg-[#f8f9fa] mix-blend-multiply bg-opacity-50" style={{ backgroundColor: 'rgba(234, 56, 76, 0.03)' }}></div>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl font-bold">Start Your Journey with the Perfect Plan</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {pricingTiers.map((tier) => (
+                <Card 
+                  key={tier.name} 
+                  className={`relative ${tier.highlighted ? 'border-primary shadow-lg' : ''}`}
+                >
+                  <CardHeader>
+                    <CardTitle className="flex flex-col items-center">
+                      <span className="text-2xl">{tier.name}</span>
+                      <div className="mt-4">
+                        <span className="text-4xl font-bold">{tier.price}</span>
+                        <span className="text-muted-foreground">{tier.period}</span>
+                      </div>
+                    </CardTitle>
+                    <p className="text-center text-muted-foreground">{tier.description}</p>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <ul className="space-y-3">
+                      {tier.features.map((feature) => (
+                        <li key={feature} className="flex items-center gap-2">
+                          <Star className="w-4 h-4 text-primary" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <Button className="w-full" asChild>
+                      <Link to={tier.ctaPath}>{tier.cta}</Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </section>
 
