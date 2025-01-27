@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Globe, LineChart, Users, Handshake, Lock, Star } from "lucide-react";
+import { 
+  ArrowRight, Globe, LineChart, Users, Handshake, Lock, Star,
+  DollarSign, Passport, Plane, Home, MessageCircle, Stethoscope, 
+  CreditCard, Heart 
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const tools = [
@@ -8,22 +12,50 @@ const tools = [
     title: "Cost Calculator",
     description: "Compare living costs across cities worldwide",
     path: "/cost-calculator",
+    icon: DollarSign
   },
   {
     title: "Visa Finder",
     description: "Find the right visa for your journey",
     path: "/visa-finder",
+    icon: Passport
   },
   {
-    title: "Transportation Hub",
+    title: "Transportation",
     description: "Book flights, trains, and more",
     path: "/transportation",
+    icon: Plane
   },
   {
     title: "Accommodations",
     description: "Find your perfect home abroad",
     path: "/accommodations",
+    icon: Home
   },
+  {
+    title: "Cultural Integration Guide",
+    description: "Learn about local customs and languages",
+    path: "/cultural-guide",
+    icon: MessageCircle
+  },
+  {
+    title: "Healthcare",
+    description: "Access healthcare information and resources",
+    path: "/healthcare",
+    icon: Stethoscope
+  },
+  {
+    title: "Banking & Finances",
+    description: "Manage finances and taxes abroad",
+    path: "/banking",
+    icon: CreditCard
+  },
+  {
+    title: "Mental Wellness",
+    description: "Resources to support your mental health",
+    path: "/wellness",
+    icon: Heart
+  }
 ];
 
 const benefits = [
@@ -121,6 +153,7 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Benefits Section */}
         <section className="space-y-10">
           <div className="text-center">
             <h2 className="text-3xl font-bold">Why Choose StartOverseas.com?</h2>
@@ -148,8 +181,9 @@ const Index = () => {
               <Card key={tool.title} className="relative hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
+                    <tool.icon className="w-5 h-5 text-primary" />
                     {tool.title}
-                    <Lock className="w-4 h-4 text-muted-foreground" />
+                    <Lock className="w-4 h-4 text-muted-foreground ml-auto" />
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
