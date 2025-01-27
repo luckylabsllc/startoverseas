@@ -139,7 +139,7 @@ const Index = () => {
         {/* Benefits Section */}
         <section className="space-y-10">
           <div className="text-center">
-            <h2 className="text-3xl font-bold">Why Choose StartOverseas?</h2>
+            <h2 className="text-3xl font-bold">Why Choose StartOverseas.com?</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit) => (
