@@ -52,7 +52,7 @@ const tools = [
   },
   {
     title: "Mental Wellness",
-    description: "Resources to support your mental health before, during, and after your travels. Help ease the post-trip blues.",
+    description: "Resources to support your mental health before, during, and after your travels.",
     path: "/wellness",
     icon: HeartHandshake
   }
