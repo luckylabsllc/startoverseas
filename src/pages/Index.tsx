@@ -111,7 +111,7 @@ const Index = () => {
               className="h-16"
             />
           </div>
-          <Button variant="outline" size="sm" asChild>
+          <Button size="lg" asChild>
             <Link to="/signin">Sign In</Link>
           </Button>
         </div>
