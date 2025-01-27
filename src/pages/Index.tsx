@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
   ArrowRight, Globe, LineChart, Users, Handshake, Lock, Star,
-  DollarSign, Passport, Plane, Home, MessageCircle, Stethoscope, 
-  CreditCard, Heart 
+  DollarSign, FileCheck, Plane2, Building2, MessagesSquare, Activity, 
+  Wallet, HeartHandshake 
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -18,43 +18,43 @@ const tools = [
     title: "Visa Finder",
     description: "Find the right visa for your journey",
     path: "/visa-finder",
-    icon: Passport
+    icon: FileCheck
   },
   {
     title: "Transportation",
     description: "Book flights, trains, and more",
     path: "/transportation",
-    icon: Plane
+    icon: Plane2
   },
   {
     title: "Accommodations",
     description: "Find your perfect home abroad",
     path: "/accommodations",
-    icon: Home
+    icon: Building2
   },
   {
     title: "Cultural Integration Guide",
     description: "Learn about local customs and languages",
     path: "/cultural-guide",
-    icon: MessageCircle
+    icon: MessagesSquare
   },
   {
     title: "Healthcare",
     description: "Access healthcare information and resources",
     path: "/healthcare",
-    icon: Stethoscope
+    icon: Activity
   },
   {
     title: "Banking & Finances",
     description: "Manage finances and taxes abroad",
     path: "/banking",
-    icon: CreditCard
+    icon: Wallet
   },
   {
     title: "Mental Wellness",
     description: "Resources to support your mental health",
     path: "/wellness",
-    icon: Heart
+    icon: HeartHandshake
   }
 ];
 
