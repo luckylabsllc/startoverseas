@@ -138,7 +138,7 @@ const Index = () => {
         {/* Hero Section */}
         <section className="text-center py-20 space-y-6">
           <h1 className="text-6xl font-bold tracking-tight">
-            Start Living Overseas
+            Your App for Everything Overseas
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Plan your move, explore the world, and thrive abroad with our all-in-one platform
