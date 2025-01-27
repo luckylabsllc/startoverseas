@@ -10,49 +10,49 @@ import { Link } from "react-router-dom";
 const tools = [
   {
     title: "Cost Calculator",
-    description: "Compare living costs across cities worldwide",
+    description: "Compare living costs across cities worldwide.",
     path: "/cost-calculator",
     icon: DollarSign
   },
   {
     title: "Visa Finder",
-    description: "Find the right visa for your journey",
+    description: "Find the right visa for your journey.",
     path: "/visa-finder",
     icon: FileCheck
   },
   {
     title: "Transportation",
-    description: "Book flights, trains, and more",
+    description: "Book flights, trains, and more.",
     path: "/transportation",
     icon: Plane
   },
   {
     title: "Accommodations",
-    description: "Find your perfect home abroad",
+    description: "Find your perfect home abroad.",
     path: "/accommodations",
     icon: Building2
   },
   {
     title: "Cultural Integration Guide",
-    description: "Learn about local customs and languages",
+    description: "Learn about local customs and languages.",
     path: "/cultural-guide",
     icon: MessagesSquare
   },
   {
     title: "Healthcare",
-    description: "Access healthcare information and resources",
+    description: "Access healthcare information and resources.",
     path: "/healthcare",
     icon: Activity
   },
   {
     title: "Banking & Finances",
-    description: "Manage finances and taxes abroad",
+    description: "Manage payments, finances, and taxes abroad.",
     path: "/banking",
     icon: Wallet
   },
   {
     title: "Mental Wellness",
-    description: "Resources to support your mental health",
+    description: "Resources to support your mental health before, during, and after your travels. Help ease the post-trip blues.",
     path: "/wellness",
     icon: HeartHandshake
   }
