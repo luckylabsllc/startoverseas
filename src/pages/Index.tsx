@@ -153,6 +153,12 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Tools Preview Section */}
+        <section className="space-y-10">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold">8 Powerful AI Tools To Supercharge Your Travels</h2>
+          </div>
+
         {/* Benefits Section */}
         <section className="space-y-10">
           <div className="text-center">
@@ -170,12 +176,6 @@ const Index = () => {
             ))}
           </div>
         </section>
-
-        {/* Tools Preview Section */}
-        <section className="space-y-10">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold">Everything You Need in One Place</h2>
-          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {tools.map((tool) => (
               <Card key={tool.title} className="relative hover:shadow-lg transition-shadow">
