@@ -1,4 +1,3 @@
-import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Globe, LineChart, Users, Handshake, Lock, Star } from "lucide-react";
@@ -16,7 +15,7 @@ const tools = [
     path: "/visa-finder",
   },
   {
-    title: "Transportation",
+    title: "Transportation Hub",
     description: "Book flights, trains, and more",
     path: "/transportation",
   },
@@ -50,49 +49,44 @@ const benefits = [
   },
 ];
 
-const testimonials = [
-  {
-    quote: "StartOverseas made my transition to a new country seamless and stress-free.",
-    author: "Sarah K.",
-    location: "Moved to Spain",
-  },
-  {
-    quote: "The cost calculator alone saved me months of research.",
-    author: "Michael R.",
-    location: "Moved to Japan",
-  },
-  {
-    quote: "Finally, all the tools I need in one place!",
-    author: "David L.",
-    location: "Moved to Australia",
-  },
-];
-
 const pricingTiers = [
   {
-    name: "Free",
-    price: "$0",
-    description: "Basic tools to start your journey",
-    features: ["Basic cost calculator", "Limited visa info", "Community access"],
-  },
-  {
     name: "Pro",
-    price: "$19/month",
-    description: "Everything you need for a successful move",
-    features: ["Full dashboard access", "All premium tools", "Priority support", "Detailed guides"],
+    price: "$19",
+    period: "/month",
+    description: "Full access to all tools for independent explorers",
+    features: [
+      "Cost Calculator",
+      "Visa Finder",
+      "Transportation Hub",
+      "Accommodations Finder",
+      "Cultural Integration Guide",
+      "Banking & Healthcare Tools",
+    ],
+    cta: "Get Pro",
+    ctaPath: "/signup-pro",
   },
   {
-    name: "Premium",
-    price: "$39/month",
-    description: "Perfect for families and businesses",
-    features: ["Multiple locations", "Team collaboration", "Custom reports", "Dedicated advisor"],
+    name: "Concierge",
+    price: "$199",
+    period: "/month",
+    description: "Everything in Pro, plus hands-on expert support",
+    features: [
+      "All Pro features",
+      "24-hour priority support",
+      "Exclusive access to experts",
+      "Personalized guidance",
+    ],
+    cta: "Upgrade to Concierge",
+    ctaPath: "/signup-concierge",
+    highlighted: true,
   },
 ];
 
 const faqs = [
   {
     question: "What's included in the subscription?",
-    answer: "Our Pro subscription includes full access to all tools, including the cost calculator, visa finder, and more. You'll also get priority support and detailed guides.",
+    answer: "Our Pro subscription includes full access to all tools, including the cost calculator, visa finder, and more. The Concierge plan adds 24-hour priority support and expert guidance.",
   },
   {
     question: "Can I cancel anytime?",
@@ -106,8 +100,8 @@ const faqs = [
 
 const Index = () => {
   return (
-    <DashboardLayout>
-      <div className="space-y-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background">
+      <div className="space-y-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
         <section className="text-center py-20 space-y-6">
           <h1 className="text-5xl font-bold tracking-tight">
@@ -133,7 +127,7 @@ const Index = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit) => (
-              <Card key={benefit.title} className="text-center">
+              <Card key={benefit.title} className="text-center hover:shadow-lg transition-shadow">
                 <CardContent className="pt-6">
                   <benefit.icon className="w-12 h-12 mx-auto mb-4 text-primary" />
                   <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
@@ -164,54 +158,40 @@ const Index = () => {
               </Card>
             ))}
           </div>
-          <p className="text-center text-muted-foreground">
-            Unlock these tools and more with a Pro account
-          </p>
-        </section>
-
-        {/* Testimonials Section */}
-        <section className="space-y-10">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold">Trusted by Hundreds of Global Movers</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial) => (
-              <Card key={testimonial.author} className="text-center">
-                <CardContent className="pt-6">
-                  <Star className="w-8 h-8 text-primary mx-auto mb-4" />
-                  <p className="text-lg mb-4 italic">{testimonial.quote}</p>
-                  <p className="font-semibold">{testimonial.author}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.location}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
         </section>
 
         {/* Pricing Section */}
         <section className="space-y-10">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold">Start Your Journey Today</h2>
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold">Start Your Journey with the Perfect Plan</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {pricingTiers.map((tier) => (
-              <Card key={tier.name} className="relative">
+              <Card 
+                key={tier.name} 
+                className={`relative ${tier.highlighted ? 'border-primary shadow-lg' : ''}`}
+              >
                 <CardHeader>
-                  <CardTitle>{tier.name}</CardTitle>
-                  <p className="text-3xl font-bold">{tier.price}</p>
-                  <p className="text-muted-foreground">{tier.description}</p>
+                  <CardTitle className="flex flex-col items-center">
+                    <span className="text-2xl">{tier.name}</span>
+                    <div className="mt-4">
+                      <span className="text-4xl font-bold">{tier.price}</span>
+                      <span className="text-muted-foreground">{tier.period}</span>
+                    </div>
+                  </CardTitle>
+                  <p className="text-center text-muted-foreground">{tier.description}</p>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <ul className="space-y-2">
+                <CardContent className="space-y-6">
+                  <ul className="space-y-3">
                     {tier.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-2">
-                        <ArrowRight className="w-4 h-4 text-primary" />
+                        <Star className="w-4 h-4 text-primary" />
                         {feature}
                       </li>
                     ))}
                   </ul>
                   <Button className="w-full" asChild>
-                    <Link to="/signup">Subscribe Now</Link>
+                    <Link to={tier.ctaPath}>{tier.cta}</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -220,11 +200,11 @@ const Index = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="space-y-10">
+        <section className="space-y-10 max-w-4xl mx-auto">
           <div className="text-center">
             <h2 className="text-3xl font-bold">Frequently Asked Questions</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid gap-6">
             {faqs.map((faq) => (
               <Card key={faq.question}>
                 <CardHeader>
@@ -276,7 +256,7 @@ const Index = () => {
           </div>
         </footer>
       </div>
-    </DashboardLayout>
+    </div>
   );
 };
 
