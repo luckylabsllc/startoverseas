@@ -158,6 +158,23 @@ const Index = () => {
           <div className="text-center">
             <h2 className="text-3xl font-bold">8 Powerful AI Tools To Supercharge Your Travels</h2>
           </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {tools.map((tool) => (
+              <Card key={tool.title} className="relative hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <tool.icon className="w-5 h-5 text-primary" />
+                    {tool.title}
+                    <Lock className="w-4 h-4 text-muted-foreground ml-auto" />
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{tool.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
 
         {/* Benefits Section */}
         <section className="space-y-10">
@@ -171,23 +188,6 @@ const Index = () => {
                   <benefit.icon className="w-12 h-12 mx-auto mb-4 text-primary" />
                   <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
                   <p className="text-muted-foreground">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {tools.map((tool) => (
-              <Card key={tool.title} className="relative hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <tool.icon className="w-5 h-5 text-primary" />
-                    {tool.title}
-                    <Lock className="w-4 h-4 text-muted-foreground ml-auto" />
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{tool.description}</p>
                 </CardContent>
               </Card>
             ))}
