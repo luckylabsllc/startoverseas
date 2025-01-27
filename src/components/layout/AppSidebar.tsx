@@ -34,7 +34,11 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <div className="p-6">
-          <h1 className="text-2xl font-bold text-primary">StartOverseas</h1>
+          <img 
+            src="/lovable-uploads/1d393d13-a6ba-4f41-98aa-bf8fa669481b.png" 
+            alt="StartOverseas Logo" 
+            className="w-full h-auto max-w-[200px] mx-auto"
+          />
         </div>
         <SidebarGroup>
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
