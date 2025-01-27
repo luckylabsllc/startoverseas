@@ -11,7 +11,7 @@ import {
 import {
   Home,
   Calculator,
-  Passport,
+  Landmark,
   Bus,
   Building2,
   Globe2,
@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 const menuItems = [
   { title: "Dashboard", icon: Home, path: "/" },
   { title: "Cost Calculator", icon: Calculator, path: "/cost-calculator" },
-  { title: "Visa Finder", icon: Passport, path: "/visa-finder" },
+  { title: "Visa Finder", icon: Landmark, path: "/visa-finder" },
   { title: "Transportation", icon: Bus, path: "/transportation" },
   { title: "Accommodations", icon: Building2, path: "/accommodations" },
   { title: "Culture Guide", icon: Globe2, path: "/culture-guide" },
@@ -56,4 +56,4 @@ export function AppSidebar() {
       </SidebarContent>
     </Sidebar>
   );
-};
+}
