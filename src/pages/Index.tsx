@@ -83,31 +83,6 @@ const pricingTiers = [
   },
 ];
 
-</lov-replace>
-
-<lov-search>
-        {/* FAQ Section */}
-        <section className="space-y-10 max-w-4xl mx-auto">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold">Frequently Asked Questions</h2>
-          </div>
-          <div className="grid gap-6">
-            {faqs.map((faq) => (
-              <Card key={faq.question}>
-                <CardHeader>
-                  <CardTitle className="text-xl">{faq.question}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{faq.answer}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-</lov-search>
-<lov-replace>
-
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
@@ -219,25 +194,6 @@ const Index = () => {
                   <Button className="w-full" asChild>
                     <Link to={tier.ctaPath}>{tier.cta}</Link>
                   </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="space-y-10 max-w-4xl mx-auto">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold">Frequently Asked Questions</h2>
-          </div>
-          <div className="grid gap-6">
-            {faqs.map((faq) => (
-              <Card key={faq.question}>
-                <CardHeader>
-                  <CardTitle className="text-xl">{faq.question}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{faq.answer}</p>
                 </CardContent>
               </Card>
             ))}
