@@ -103,12 +103,12 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
           <div className="flex items-center">
             <img 
               src="/lovable-uploads/b702823b-fc68-4323-b424-96fd6e5ba6df.png" 
               alt="Start Overseas" 
-              className="h-8"
+              className="h-16"
             />
           </div>
           <Button variant="outline" size="sm" asChild>
