@@ -101,21 +101,37 @@ const faqs = [
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center">
+            <img 
+              src="/lovable-uploads/b702823b-fc68-4323-b424-96fd6e5ba6df.png" 
+              alt="Start Overseas" 
+              className="h-8"
+            />
+          </div>
+          <Button variant="outline" size="sm" asChild>
+            <Link to="/signin">Sign In</Link>
+          </Button>
+        </div>
+      </header>
+
       <div className="space-y-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
         <section className="text-center py-20 space-y-6">
-          <h1 className="text-5xl font-bold tracking-tight">
-            Your Ultimate Guide to Living Overseas
+          <h1 className="text-6xl font-bold tracking-tight">
+            Start Living Overseas
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Plan your move, navigate the journey, and thrive abroad with StartOverseas
+            Plan your move, explore the world, and thrive abroad with our all-in-one platform
           </p>
           <div className="flex gap-4 justify-center">
-            <Button size="lg" asChild>
+            <Button size="lg" className="text-lg px-8 py-6" asChild>
               <Link to="/signup">Get Started <ArrowRight className="ml-2" /></Link>
             </Button>
-            <Button variant="outline" size="lg" asChild>
-              <Link to="/how-it-works">See How It Works</Link>
+            <Button variant="outline" size="lg" className="text-lg" asChild>
+              <Link to="/learn-more">Learn More</Link>
             </Button>
           </div>
         </section>
