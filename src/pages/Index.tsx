@@ -151,25 +151,28 @@ const Index = () => {
         </section>
 
         {/* Tools Preview Section */}
-        <section className="space-y-10">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold">8 Powerful AI Tools To Supercharge Your Travels</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {tools.map((tool) => (
-              <Card key={tool.title} className="relative hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <tool.icon className="w-5 h-5 text-primary" />
-                    {tool.title}
-                    <Lock className="w-4 h-4 text-muted-foreground ml-auto" />
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{tool.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+        <section className="relative py-20 -mx-4 sm:-mx-6 lg:-mx-8">
+          <div className="absolute inset-0 bg-[#f8f9fa] mix-blend-multiply bg-opacity-50" style={{ backgroundColor: 'rgba(234, 56, 76, 0.03)' }}></div>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold">8 Powerful AI Tools To Supercharge Your Travels</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {tools.map((tool) => (
+                <Card key={tool.title} className="relative hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <tool.icon className="w-5 h-5 text-primary" />
+                      {tool.title}
+                      <Lock className="w-4 h-4 text-muted-foreground ml-auto" />
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">{tool.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </section>
 
