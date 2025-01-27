@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
   ArrowRight, Globe, LineChart, Users, Handshake, Lock, Star,
-  DollarSign, FileCheck, Plane2, Building2, MessagesSquare, Activity, 
+  DollarSign, FileCheck, Plane, Building2, MessagesSquare, Activity, 
   Wallet, HeartHandshake 
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -24,7 +24,7 @@ const tools = [
     title: "Transportation",
     description: "Book flights, trains, and more",
     path: "/transportation",
-    icon: Plane2
+    icon: Plane
   },
   {
     title: "Accommodations",
