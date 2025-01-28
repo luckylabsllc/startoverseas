@@ -146,7 +146,7 @@ const Index = () => {
           <div className="flex justify-center pt-4">
             <Button 
               size="lg" 
-              className="text-xl px-8 py-6 font-bold relative before:absolute before:inset-0 before:-z-10 before:blur-[32px] before:bg-[#FF3B30]/40 before:opacity-100 bg-[#FF3B30] hover:bg-[#E02E24] hover:shadow-md hover:shadow-[#FF3B30]/10 transition-all duration-300" 
+              className="text-xl px-8 py-6 font-bold relative before:absolute before:inset-0 before:-z-10 before:blur-[40px] before:bg-[#FF3B30]/30 before:opacity-100 after:absolute after:inset-0 after:-z-10 after:blur-[15px] after:bg-[#FF3B30]/40 after:opacity-100 bg-[#FF3B30] hover:bg-[#E02E24] hover:shadow-md hover:shadow-[#FF3B30]/10 transition-all duration-300" 
               asChild
             >
               <Link to="/signup">START TRAVELING</Link>
