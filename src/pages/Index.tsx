@@ -123,9 +123,9 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
           <div className="flex items-center">
             <img 
-              src="/lovable-uploads/6c1a26ef-5ab5-4cba-b56d-1304d2d7e0c1.png" 
+              src="/lovable-uploads/376e8f7b-c13e-491a-8659-c7089ad8957d.png" 
               alt="Overseas" 
-              className="h-16"
+              className="h-12"
             />
           </div>
           <Button size="lg" className="bg-black hover:bg-black/90 text-white" asChild>
