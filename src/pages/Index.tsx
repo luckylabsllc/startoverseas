@@ -140,12 +140,12 @@ const Index = () => {
           <h1 className="text-6xl font-bold tracking-tight">
             Your App for Everything Overseas
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Plan your move, explore the world, and thrive abroad with our all-in-one platform
+          <p className="text-2xl text-black max-w-3xl mx-auto">
+            Plan your move, thrive abroad, and unlock banger opportunities to live your best life overseas with the most powerful AI travel tool ever created.
           </p>
           <div className="flex justify-center">
             <Button size="lg" className="text-lg px-8 py-6" asChild>
-              <Link to="/signup">Get Started <ArrowRight className="ml-2" /></Link>
+              <Link to="/signup">START TRAVELING</Link>
             </Button>
           </div>
         </section>
