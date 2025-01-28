@@ -84,7 +84,7 @@ const benefits = [
 const pricingTiers = [
   {
     name: "Pro",
-    price: "$19",
+    price: "$49",
     period: "/month",
     description: "Full access to all tools for independent explorers",
     features: [
@@ -100,7 +100,7 @@ const pricingTiers = [
   },
   {
     name: "Concierge",
-    price: "$199",
+    price: "$599",
     period: "/month",
     description: "Everything in Pro, plus hands-on expert support",
     features: [
