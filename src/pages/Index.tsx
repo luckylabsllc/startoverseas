@@ -144,7 +144,11 @@ const Index = () => {
             Plan your move, thrive abroad, and unlock banger opportunities to live your best life overseas with the most powerful AI travel tool ever created.
           </p>
           <div className="flex justify-center pt-4">
-            <Button size="lg" className="text-lg px-8 py-6 font-bold" asChild>
+            <Button 
+              size="lg" 
+              className="text-xl px-8 py-6 font-bold relative before:absolute before:inset-0 before:-z-10 before:blur-xl before:bg-primary/50 before:opacity-75 hover:shadow-xl hover:shadow-primary/20 transition-shadow duration-300" 
+              asChild
+            >
               <Link to="/signup">START TRAVELING</Link>
             </Button>
           </div>
