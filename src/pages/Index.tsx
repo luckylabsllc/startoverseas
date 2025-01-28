@@ -123,8 +123,8 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
           <div className="flex items-center">
             <img 
-              src="/lovable-uploads/b702823b-fc68-4323-b424-96fd6e5ba6df.png" 
-              alt="Start Overseas" 
+              src="/lovable-uploads/6c1a26ef-5ab5-4cba-b56d-1304d2d7e0c1.png" 
+              alt="Overseas" 
               className="h-16"
             />
           </div>

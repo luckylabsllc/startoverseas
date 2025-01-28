@@ -35,8 +35,8 @@ export function AppSidebar() {
       <SidebarContent>
         <div className="p-6">
           <img 
-            src="/lovable-uploads/1d393d13-a6ba-4f41-98aa-bf8fa669481b.png" 
-            alt="StartOverseas Logo" 
+            src="/lovable-uploads/6c1a26ef-5ab5-4cba-b56d-1304d2d7e0c1.png" 
+            alt="Overseas Logo" 
             className="w-full h-auto max-w-[200px] mx-auto"
           />
         </div>
