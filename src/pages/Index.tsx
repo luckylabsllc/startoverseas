@@ -137,14 +137,14 @@ const Index = () => {
       <div className="space-y-20">
         {/* Hero Section */}
         <section className="text-center py-20 space-y-6">
-          <h1 className="text-6xl font-bold tracking-tight">
+          <h1 className="text-7xl font-bold tracking-tight">
             Your App for Everything Overseas
           </h1>
           <p className="text-2xl text-black max-w-3xl mx-auto">
             Plan your move, thrive abroad, and unlock banger opportunities to live your best life overseas with the most powerful AI travel tool ever created.
           </p>
           <div className="flex justify-center">
-            <Button size="lg" className="text-lg px-8 py-6" asChild>
+            <Button size="lg" className="text-lg px-8 py-6 font-bold" asChild>
               <Link to="/signup">START TRAVELING</Link>
             </Button>
           </div>
