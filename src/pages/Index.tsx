@@ -162,7 +162,7 @@ const Index = () => {
             <Button
               variant="outline"
               size="icon"
-              className="w-8 h-8 rounded-full border border-foreground/20 bg-black/5 dark:bg-white/5"
+              className="w-8 h-8 rounded-full border-0 bg-transparent"
               asChild
             >
               <Link to="/signin">
@@ -186,10 +186,10 @@ const Index = () => {
             <div className="w-full max-w-[285px]">
               <Input
                 type="text"
-                placeholder="Where do you want to go?"
+                placeholder="Where to?"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-12 text-lg shadow-[0_4px_12px_rgba(0,0,0,0.08)]"
+                className="h-12 text-base shadow-[0_4px_12px_rgba(0,0,0,0.08)]"
               />
             </div>
             <Button 
