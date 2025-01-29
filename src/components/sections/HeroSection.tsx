@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { City, searchCities } from "@/lib/cities";
 import { cn } from "@/lib/utils";
-import { Command } from "cmdk";
 
 export const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [results, setResults] = useState<City[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout>();
 
-  const handleSearch = (value: string) => {
+  const handleSearch = async (value: string) => {
     setSearchQuery(value);
     
     // Clear previous timeout
@@ -23,10 +23,16 @@ export const HeroSection = () => {
     }
 
     // Debounce search
-    timeoutRef.current = setTimeout(() => {
-      const searchResults = searchCities(value);
-      setResults(searchResults);
-      setSelectedIndex(0);
+    timeoutRef.current = setTimeout(async () => {
+      if (value.length >= 2) {
+        setIsLoading(true);
+        const searchResults = await searchCities(value);
+        setResults(searchResults);
+        setSelectedIndex(0);
+        setIsLoading(false);
+      } else {
+        setResults([]);
+      }
     }, 200);
   };
 
@@ -90,28 +96,28 @@ export const HeroSection = () => {
           />
           {isOpen && (
             <div className="absolute w-full mt-1 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-100 dark:border-gray-700 max-h-[300px] overflow-y-auto z-50">
-              {results.length > 0 ? (
+              {isLoading ? (
+                <div className="px-4 py-2 text-gray-500 text-sm">
+                  Loading...
+                </div>
+              ) : results.length > 0 ? (
                 <div className="py-1">
                   {results.map((city, index) => (
                     <div
                       key={`${city.name}-${city.country}`}
                       className={cn(
                         "px-4 py-2 cursor-pointer text-left flex justify-between items-center",
-                        selectedIndex === index ? "bg-primary/10" : "hover:bg-gray-50 dark:hover:bg-gray-700",
-                        index === 0 && "font-medium"
+                        selectedIndex === index ? "bg-primary/10" : "hover:bg-gray-50 dark:hover:bg-gray-700"
                       )}
                       onClick={() => handleSelectCity(city)}
                     >
                       <span>{city.name}, {city.country}</span>
-                      {index === 0 && (
-                        <span className="text-xs text-gray-500">Popular destination</span>
-                      )}
                     </div>
                   ))}
                 </div>
               ) : (
                 <div className="px-4 py-2 text-gray-500 text-sm">
-                  No results found
+                  {searchQuery.length < 2 ? "Type at least 2 characters" : "No results found"}
                 </div>
               )}
             </div>

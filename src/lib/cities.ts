@@ -4,38 +4,49 @@ export interface City {
   popularity: number;
 }
 
-// Mock data - in production this would come from an API
-export const cities: City[] = [
-  { name: "Chicago", country: "USA", popularity: 100 },
-  { name: "Chihuahua", country: "Mexico", popularity: 60 },
-  { name: "Chiang Mai", country: "Thailand", popularity: 80 },
-  { name: "London", country: "UK", popularity: 100 },
-  { name: "Paris", country: "France", popularity: 100 },
-  { name: "New York", country: "USA", popularity: 100 },
-  { name: "Tokyo", country: "Japan", popularity: 100 },
-  { name: "Sydney", country: "Australia", popularity: 90 },
-  { name: "Dubai", country: "UAE", popularity: 90 },
-  { name: "Singapore", country: "Singapore", popularity: 85 },
-];
+interface NominatimResponse {
+  display_name: string;
+  address: {
+    city?: string;
+    town?: string;
+    village?: string;
+    state?: string;
+    country: string;
+  };
+}
 
-export const searchCities = (query: string): City[] => {
-  const normalizedQuery = query.toLowerCase().trim();
-  if (!normalizedQuery) return [];
-  
-  return cities
-    .filter(city => 
-      city.name.toLowerCase().includes(normalizedQuery) ||
-      city.country.toLowerCase().includes(normalizedQuery)
-    )
-    .sort((a, b) => {
-      // Prioritize exact matches
-      const aStartsWith = a.name.toLowerCase().startsWith(normalizedQuery);
-      const bStartsWith = b.name.toLowerCase().startsWith(normalizedQuery);
-      
-      if (aStartsWith && !bStartsWith) return -1;
-      if (!aStartsWith && bStartsWith) return 1;
-      
-      // Then sort by popularity
-      return b.popularity - a.popularity;
-    });
+export const searchCities = async (query: string): Promise<City[]> => {
+  if (!query || query.length < 2) return [];
+
+  try {
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
+        query
+      )}&format=json&addressdetails=1&featureType=city&limit=5`
+    );
+
+    if (!response.ok) {
+      console.error('Failed to fetch cities');
+      return [];
+    }
+
+    const data: NominatimResponse[] = await response.json();
+    
+    return data
+      .map(item => {
+        const cityName = item.address.city || item.address.town || item.address.village || '';
+        if (!cityName) return null;
+        
+        return {
+          name: cityName,
+          country: item.address.country,
+          // Set a default popularity score since the API doesn't provide this
+          popularity: 80
+        };
+      })
+      .filter((city): city is City => city !== null);
+  } catch (error) {
+    console.error('Error fetching cities:', error);
+    return [];
+  }
 };
