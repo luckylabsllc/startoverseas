@@ -1,10 +1,72 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { City, searchCities } from "@/lib/cities";
+import { cn } from "@/lib/utils";
+import { Command } from "cmdk";
 
 export const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [results, setResults] = useState<City[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout>();
+
+  const handleSearch = (value: string) => {
+    setSearchQuery(value);
+    
+    // Clear previous timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    // Debounce search
+    timeoutRef.current = setTimeout(() => {
+      const searchResults = searchCities(value);
+      setResults(searchResults);
+      setSelectedIndex(0);
+    }, 200);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!isOpen) return;
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setSelectedIndex(prev => 
+          prev < results.length - 1 ? prev + 1 : prev
+        );
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setSelectedIndex(prev => prev > 0 ? prev - 1 : prev);
+        break;
+      case "Enter":
+        e.preventDefault();
+        if (results[selectedIndex]) {
+          const selected = results[selectedIndex];
+          setSearchQuery(`${selected.name}, ${selected.country}`);
+          setIsOpen(false);
+        }
+        break;
+      case "Escape":
+        setIsOpen(false);
+        break;
+    }
+  };
+
+  const handleSelectCity = (city: City) => {
+    setSearchQuery(`${city.name}, ${city.country}`);
+    setIsOpen(false);
+    inputRef.current?.blur();
+  };
+
+  useEffect(() => {
+    setIsOpen(searchQuery.length > 0);
+  }, [searchQuery]);
 
   return (
     <section className="text-center py-12 space-y-6">
@@ -15,14 +77,45 @@ export const HeroSection = () => {
         Unlock banger opportunities to live your best life overseas with the most powerful AI travel tool ever created.
       </p>
       <div className="flex flex-col items-center gap-4 pt-4">
-        <div className="w-full max-w-[313px]">
+        <div className="w-full max-w-[313px] relative">
           <Input
+            ref={inputRef}
             type="text"
             placeholder="Where to?"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => handleSearch(e.target.value)}
+            onKeyDown={handleKeyDown}
+            onFocus={() => setIsOpen(true)}
             className="h-12 text-base shadow-[0_4px_12px_rgba(0,0,0,0.08)] border-gray-100"
           />
+          {isOpen && (
+            <div className="absolute w-full mt-1 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-100 dark:border-gray-700 max-h-[300px] overflow-y-auto z-50">
+              {results.length > 0 ? (
+                <div className="py-1">
+                  {results.map((city, index) => (
+                    <div
+                      key={`${city.name}-${city.country}`}
+                      className={cn(
+                        "px-4 py-2 cursor-pointer text-left flex justify-between items-center",
+                        selectedIndex === index ? "bg-primary/10" : "hover:bg-gray-50 dark:hover:bg-gray-700",
+                        index === 0 && "font-medium"
+                      )}
+                      onClick={() => handleSelectCity(city)}
+                    >
+                      <span>{city.name}, {city.country}</span>
+                      {index === 0 && (
+                        <span className="text-xs text-gray-500">Popular destination</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="px-4 py-2 text-gray-500 text-sm">
+                  No results found
+                </div>
+              )}
+            </div>
+          )}
         </div>
         <Button 
           size="lg" 
