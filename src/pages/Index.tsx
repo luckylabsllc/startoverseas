@@ -186,7 +186,7 @@ const Index = () => {
             <div className="w-full max-w-[285px]">
               <Input
                 type="text"
-                placeholder="Where do you want to go?"
+                placeholder="Where to?"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="h-12 text-base shadow-[0_4px_12px_rgba(0,0,0,0.08)]"
