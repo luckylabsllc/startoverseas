@@ -162,7 +162,7 @@ const Index = () => {
             <Button
               variant="outline"
               size="icon"
-              className="w-8 h-8 rounded-full border border-foreground/20"
+              className="w-8 h-8 rounded-full border border-foreground/20 bg-black/5 dark:bg-white/5"
               asChild
             >
               <Link to="/signin">
@@ -179,17 +179,17 @@ const Index = () => {
           <h1 className="text-5xl font-bold tracking-tight dark:text-white">
             Your App for Everything Overseas
           </h1>
-          <p className="text-sm text-black dark:text-gray-300 max-w-3xl mx-auto">
-            Plan your move and unlock banger opportunities to live your best life overseas with the most powerful AI travel tool ever created.
+          <p className="text-sm font-bold text-black dark:text-gray-300 max-w-3xl mx-auto">
+            Unlock banger opportunities to live your best life overseas with the most powerful AI travel tool ever created.
           </p>
           <div className="flex flex-col items-center gap-3 pt-2">
-            <div className="w-full max-w-[260px]">
+            <div className="w-full max-w-[285px]">
               <Input
                 type="text"
                 placeholder="Where do you want to go?"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-12 text-lg"
+                className="h-12 text-lg shadow-sm"
               />
             </div>
             <Button 
