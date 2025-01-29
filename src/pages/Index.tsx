@@ -137,7 +137,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b dark:border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center">
             <img 
               src="/lovable-uploads/376e8f7b-c13e-491a-8659-c7089ad8957d.png" 
@@ -173,17 +173,17 @@ const Index = () => {
         </div>
       </header>
 
-      <div className="space-y-20">
+      <div className="space-y-16">
         {/* Hero Section */}
-        <section className="text-center py-20 space-y-6">
+        <section className="text-center py-12 space-y-4">
           <h1 className="text-5xl font-bold tracking-tight dark:text-white">
             Your App for Everything Overseas
           </h1>
-          <p className="text-base text-black dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-sm text-black dark:text-gray-300 max-w-3xl mx-auto">
             Plan your move and unlock banger opportunities to live your best life overseas with the most powerful AI travel tool ever created.
           </p>
-          <div className="flex flex-col items-center gap-4 pt-4">
-            <div className="w-full max-w-sm">
+          <div className="flex flex-col items-center gap-3 pt-2">
+            <div className="w-full max-w-[260px]">
               <Input
                 type="text"
                 placeholder="Where do you want to go?"
