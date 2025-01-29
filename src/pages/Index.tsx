@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
   ArrowRight, Globe, LineChart, Users, Handshake, Lock, Star,
@@ -118,6 +119,7 @@ const pricingTiers = [
 
 const Index = () => {
   const [isDark, setIsDark] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     // Check initial theme
@@ -140,10 +142,10 @@ const Index = () => {
             <img 
               src="/lovable-uploads/376e8f7b-c13e-491a-8659-c7089ad8957d.png" 
               alt="Overseas" 
-              className="h-10" // Reduced from h-12 to h-10
+              className="h-10"
             />
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <Button
               variant="ghost"
               size="icon"
@@ -158,9 +160,9 @@ const Index = () => {
               )}
             </Button>
             <Button
-              variant="ghost"
+              variant="outline"
               size="icon"
-              className="w-9 h-9 rounded-full"
+              className="w-9 h-9 rounded-full border-2"
               asChild
             >
               <Link to="/signin">
@@ -177,10 +179,19 @@ const Index = () => {
           <h1 className="text-6xl font-bold tracking-tight dark:text-white">
             Your App for Everything Overseas
           </h1>
-          <p className="text-2xl text-black dark:text-gray-300 max-w-3xl mx-auto">
-            Plan your move, thrive abroad, and unlock banger opportunities to live your best life overseas with the most powerful AI travel tool ever created.
+          <p className="text-lg text-black dark:text-gray-300 max-w-3xl mx-auto">
+            Plan your move and unlock banger opportunities to live your best life overseas with the most powerful AI travel tool ever created.
           </p>
-          <div className="flex justify-center pt-4">
+          <div className="flex flex-col items-center gap-4 pt-4">
+            <div className="w-full max-w-md">
+              <Input
+                type="text"
+                placeholder="Where do you want to go?"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="h-12 text-lg"
+              />
+            </div>
             <Button 
               size="lg" 
               className="text-xl px-8 py-6 font-bold relative before:absolute before:inset-0 before:-z-10 before:blur-[40px] before:bg-[#FF3B30]/30 before:opacity-100 after:absolute after:inset-0 after:-z-10 after:blur-[15px] after:bg-[#FF3B30]/40 after:opacity-100 bg-[#FF3B30] hover:bg-[#E02E24] hover:shadow-md hover:shadow-[#FF3B30]/10 transition-all duration-300" 
