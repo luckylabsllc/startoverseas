@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
   ArrowRight, Globe, LineChart, Users, Handshake, Lock, Star,
   DollarSign, FileCheck, Plane, Building2, MessagesSquare, Activity, 
-  Wallet, HeartHandshake, Sun, Moon
+  Wallet, HeartHandshake, Sun, Moon, User
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -140,7 +140,7 @@ const Index = () => {
             <img 
               src="/lovable-uploads/376e8f7b-c13e-491a-8659-c7089ad8957d.png" 
               alt="Overseas" 
-              className="h-12"
+              className="h-10" // Reduced from h-12 to h-10
             />
           </div>
           <div className="flex items-center gap-4">
@@ -157,8 +157,15 @@ const Index = () => {
                 <Moon className="h-4 w-4" />
               )}
             </Button>
-            <Button size="lg" className="bg-black dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 text-white" asChild>
-              <Link to="/signin">Sign In</Link>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="w-9 h-9 rounded-full"
+              asChild
+            >
+              <Link to="/signin">
+                <User className="h-4 w-4" />
+              </Link>
             </Button>
           </div>
         </div>
@@ -167,7 +174,7 @@ const Index = () => {
       <div className="space-y-20">
         {/* Hero Section */}
         <section className="text-center py-20 space-y-8">
-          <h1 className="text-7xl font-bold tracking-tight dark:text-white">
+          <h1 className="text-6xl font-bold tracking-tight dark:text-white">
             Your App for Everything Overseas
           </h1>
           <p className="text-2xl text-black dark:text-gray-300 max-w-3xl mx-auto">
