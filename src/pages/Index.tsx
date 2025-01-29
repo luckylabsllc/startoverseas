@@ -3,9 +3,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
   ArrowRight, Globe, LineChart, Users, Handshake, Lock, Star,
   DollarSign, FileCheck, Plane, Building2, MessagesSquare, Activity, 
-  Wallet, HeartHandshake 
+  Wallet, HeartHandshake, Sun, Moon
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const tools = [
   {
@@ -116,6 +117,20 @@ const pricingTiers = [
 ];
 
 const Index = () => {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // Check initial theme
+    const isDarkMode = document.documentElement.classList.contains('dark');
+    setIsDark(isDarkMode);
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = !isDark;
+    setIsDark(newTheme);
+    document.documentElement.classList.toggle('dark');
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -128,9 +143,24 @@ const Index = () => {
               className="h-12"
             />
           </div>
-          <Button size="lg" className="bg-black hover:bg-black/90 text-white" asChild>
-            <Link to="/signin">Sign In</Link>
-          </Button>
+          <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="w-9 h-9 rounded-full"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+            >
+              {isDark ? (
+                <Sun className="h-4 w-4" />
+              ) : (
+                <Moon className="h-4 w-4" />
+              )}
+            </Button>
+            <Button size="lg" className="bg-black hover:bg-black/90 text-white" asChild>
+              <Link to="/signin">Sign In</Link>
+            </Button>
+          </div>
         </div>
       </header>
 
