@@ -15,13 +15,13 @@ export const HeroSection = () => {
         Unlock banger opportunities to live your best life overseas with the most powerful AI travel tool ever created.
       </p>
       <div className="flex flex-col items-center gap-4 pt-4">
-        <div className="w-full max-w-[285px]">
+        <div className="w-full max-w-[313px]">
           <Input
             type="text"
             placeholder="Where to?"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="h-12 text-base shadow-[0_4px_12px_rgba(0,0,0,0.08)]"
+            className="h-12 text-base shadow-[0_4px_12px_rgba(0,0,0,0.08)] border-gray-100"
           />
         </div>
         <Button 
