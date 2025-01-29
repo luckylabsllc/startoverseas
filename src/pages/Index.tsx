@@ -136,8 +136,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b dark:border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <header className="h-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
           <div className="flex items-center">
             <img 
               src="/lovable-uploads/376e8f7b-c13e-491a-8659-c7089ad8957d.png" 
@@ -175,14 +175,14 @@ const Index = () => {
 
       <div className="space-y-16">
         {/* Hero Section */}
-        <section className="text-center py-12 space-y-4">
+        <section className="text-center py-12 space-y-6">
           <h1 className="text-5xl font-bold tracking-tight dark:text-white">
             Your App for Everything Overseas
           </h1>
           <p className="text-sm font-bold text-black dark:text-gray-300 max-w-3xl mx-auto">
             Unlock banger opportunities to live your best life overseas with the most powerful AI travel tool ever created.
           </p>
-          <div className="flex flex-col items-center gap-3 pt-2">
+          <div className="flex flex-col items-center gap-4 pt-4">
             <div className="w-full max-w-[285px]">
               <Input
                 type="text"
@@ -194,7 +194,7 @@ const Index = () => {
             </div>
             <Button 
               size="lg" 
-              className="text-xl px-8 py-6 font-bold relative before:absolute before:inset-0 before:-z-10 before:blur-[40px] before:bg-[#FF3B30]/30 before:opacity-100 after:absolute after:inset-0 after:-z-10 after:blur-[15px] after:bg-[#FF3B30]/40 after:opacity-100 bg-[#FF3B30] hover:bg-[#E02E24] hover:shadow-md hover:shadow-[#FF3B30]/10 transition-all duration-300" 
+              className="text-xl px-8 py-6 font-bold relative w-[95%] max-w-[270px] before:absolute before:inset-0 before:-z-10 before:blur-[40px] before:bg-[#FF3B30]/30 before:opacity-100 after:absolute after:inset-0 after:-z-10 after:blur-[15px] after:bg-[#FF3B30]/40 after:opacity-100 bg-[#FF3B30] hover:bg-[#E02E24] hover:shadow-md hover:shadow-[#FF3B30]/10 transition-all duration-300" 
               asChild
             >
               <Link to="/signup">START TRAVELING</Link>
