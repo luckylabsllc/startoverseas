@@ -162,7 +162,7 @@ const Index = () => {
             <Button
               variant="outline"
               size="icon"
-              className="w-9 h-9 rounded-full border-2"
+              className="w-8 h-8 rounded-full border border-foreground/20"
               asChild
             >
               <Link to="/signin">
@@ -175,15 +175,15 @@ const Index = () => {
 
       <div className="space-y-20">
         {/* Hero Section */}
-        <section className="text-center py-20 space-y-8">
-          <h1 className="text-6xl font-bold tracking-tight dark:text-white">
+        <section className="text-center py-20 space-y-6">
+          <h1 className="text-5xl font-bold tracking-tight dark:text-white">
             Your App for Everything Overseas
           </h1>
-          <p className="text-lg text-black dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-base text-black dark:text-gray-300 max-w-3xl mx-auto">
             Plan your move and unlock banger opportunities to live your best life overseas with the most powerful AI travel tool ever created.
           </p>
           <div className="flex flex-col items-center gap-4 pt-4">
-            <div className="w-full max-w-md">
+            <div className="w-full max-w-sm">
               <Input
                 type="text"
                 placeholder="Where do you want to go?"
