@@ -4,6 +4,7 @@ import { ToolsSection } from "@/components/sections/ToolsSection";
 import { BenefitsSection } from "@/components/sections/BenefitsSection";
 import { PricingSection } from "@/components/sections/PricingSection";
 import { Footer } from "@/components/layout/Footer";
+import { HelpToggle } from "@/components/layout/HelpToggle";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
         <PricingSection />
         <Footer />
       </div>
+      <HelpToggle />
     </div>
   );
 };
