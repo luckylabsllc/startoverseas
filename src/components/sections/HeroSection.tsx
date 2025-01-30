@@ -147,7 +147,7 @@ export const HeroSection = () => {
           onClick={handleStartTravel}
           className="
             px-8 py-4 
-            text-lg font-bold text-black
+            text-lg font-bold text-[#fff8e7]
             bg-[#e03347] hover:bg-[#c92e40]
             border border-black
             rounded-lg
