@@ -143,13 +143,22 @@ export const HeroSection = () => {
           )}
         </div>
         
-        <Button 
-          size="lg" 
+        <button 
           onClick={handleStartTravel}
-          className="button-glow text-lg px-8 py-6 rounded-xl font-bold bg-primary hover:bg-primary-dark transition-all duration-300 shadow-lg"
+          className="
+            px-8 py-4 
+            text-lg font-bold text-black
+            bg-[#e03347] hover:bg-[#c92e40]
+            border border-black
+            rounded-lg
+            shadow-[2px_2px_0px_0px_rgba(0,0,0,0.25)]
+            hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,0.25),inset_0_1px_4px_rgba(0,0,0,0.25)]
+            transition-all duration-200
+            transform hover:translate-y-[1px]
+          "
         >
           START TRAVELING
-        </Button>
+        </button>
       </div>
     </section>
   );
