@@ -98,7 +98,7 @@ export const HeroSection = () => {
       </p>
       
       <div className="flex flex-col items-center gap-4 pt-8">
-        <div className="w-full max-w-md relative">
+        <div className="w-full max-w-md px-4 sm:px-0 relative">
           <div className="relative">
             <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <Input
