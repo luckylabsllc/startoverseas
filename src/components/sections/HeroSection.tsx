@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { City, searchCities } from "@/lib/cities";
 import { cn } from "@/lib/utils";
 
 export const HeroSection = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [results, setResults] = useState<City[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -17,12 +18,10 @@ export const HeroSection = () => {
   const handleSearch = async (value: string) => {
     setSearchQuery(value);
     
-    // Clear previous timeout
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
 
-    // Debounce search
     timeoutRef.current = setTimeout(async () => {
       if (value.length >= 2) {
         setIsLoading(true);
@@ -54,8 +53,7 @@ export const HeroSection = () => {
         e.preventDefault();
         if (results[selectedIndex]) {
           const selected = results[selectedIndex];
-          setSearchQuery(`${selected.name}, ${selected.country}`);
-          setIsOpen(false);
+          handleSelectCity(selected);
         }
         break;
       case "Escape":
@@ -65,9 +63,16 @@ export const HeroSection = () => {
   };
 
   const handleSelectCity = (city: City) => {
-    setSearchQuery(`${city.name}, ${city.country}`);
+    const cityQuery = `${city.name}, ${city.country}`;
+    setSearchQuery(cityQuery);
     setIsOpen(false);
     inputRef.current?.blur();
+  };
+
+  const handleStartTravel = () => {
+    if (searchQuery) {
+      navigate(`/dossier/${encodeURIComponent(searchQuery)}`);
+    }
   };
 
   useEffect(() => {
@@ -125,10 +130,10 @@ export const HeroSection = () => {
         </div>
         <Button 
           size="lg" 
-          className="text-base px-8 py-6 font-bold relative w-[200px] bg-primary hover:bg-primary/90 transition-all duration-300" 
-          asChild
+          className="text-base px-8 py-6 font-bold relative w-[200px] bg-primary hover:bg-primary/90 transition-all duration-300"
+          onClick={handleStartTravel}
         >
-          <Link to="/signup">START TRAVELING</Link>
+          START TRAVELING
         </Button>
       </div>
     </section>
