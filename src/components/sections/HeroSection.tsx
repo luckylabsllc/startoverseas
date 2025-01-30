@@ -93,11 +93,11 @@ export const HeroSection = () => {
         Your App for Everything Overseas
       </h1>
       
-      <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-bold">
+      <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-4">
         Unlock banger opportunities to live your best life overseas
       </p>
       
-      <div className="flex flex-col items-center gap-4 pt-8">
+      <div className="flex flex-col items-center gap-4 pt-4">
         <div className="w-full max-w-md px-4 sm:px-0 relative">
           <div className="relative">
             <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
