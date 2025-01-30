@@ -81,20 +81,20 @@ export const HeroSection = () => {
   }, [searchQuery]);
 
   return (
-    <section className="relative text-center py-12 space-y-6 overflow-visible">
+    <section className="relative text-center py-8 space-y-4 overflow-visible">
       <div className="absolute inset-0 bg-gradient-to-b from-secondary/50 to-transparent -z-10" />
       
-      <div className="sticker mb-8">
+      <div className="sticker mb-6">
         <Sparkles className="w-4 h-4" />
         Most Powerful AI Travel Tool Ever Created
       </div>
       
-      <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent leading-[1.2] pb-2">
+      <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent leading-[1.2] pb-1">
         Your App for Everything Overseas
       </h1>
       
-      <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-4">
-        Unlock banger opportunities to live your best life overseas
+      <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
+        Unlock banger opportunities to live your best life overseas.
       </p>
       
       <div className="flex flex-col items-center gap-4 pt-4">
