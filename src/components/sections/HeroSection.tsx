@@ -104,7 +104,7 @@ export const HeroSection = () => {
             <Input
               ref={inputRef}
               type="text"
-              placeholder="Where to?"
+              placeholder="Where do you want to live?"
               value={searchQuery}
               onChange={(e) => handleSearch(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -157,7 +157,7 @@ export const HeroSection = () => {
             transform hover:translate-y-[2px] hover:translate-x-[2px]
           "
         >
-          START TRAVELING
+          GO OVERSEAS
         </button>
       </div>
     </section>
