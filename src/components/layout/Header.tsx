@@ -22,9 +22,9 @@ export const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
         <div className="flex items-center">
           <img 
-            src="/lovable-uploads/376e8f7b-c13e-491a-8659-c7089ad8957d.png" 
+            src="/lovable-uploads/c06ea0fa-cd15-4dfe-bf45-b9a89041645f.png" 
             alt="Overseas" 
-            className="h-10"
+            className="h-8"
           />
         </div>
         <div className="flex items-center gap-2">
