@@ -89,7 +89,7 @@ export const HeroSection = () => {
         Most Powerful AI Travel Tool Ever Created
       </div>
       
-      <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent leading-tight">
+      <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent leading-[1.2] pb-2">
         Your App for Everything Overseas
       </h1>
       
