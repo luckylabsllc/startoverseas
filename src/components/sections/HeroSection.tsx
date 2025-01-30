@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { City, searchCities } from "@/lib/cities";
 import { cn } from "@/lib/utils";
+import { Globe, Sparkles } from "lucide-react";
 
 export const HeroSection = () => {
   const navigate = useNavigate();
@@ -80,39 +81,52 @@ export const HeroSection = () => {
   }, [searchQuery]);
 
   return (
-    <section className="text-center py-12 space-y-6">
-      <h1 className="text-5xl font-bold tracking-tight dark:text-white">
+    <section className="relative text-center py-12 space-y-6 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-secondary/50 to-transparent -z-10" />
+      
+      <div className="sticker mb-8">
+        <Sparkles className="w-4 h-4" />
+        Most Powerful AI Travel Tool
+      </div>
+      
+      <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
         Your App for Everything Overseas
       </h1>
-      <p className="text-sm font-bold text-black dark:text-gray-300 max-w-3xl mx-auto">
+      
+      <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
         Unlock banger opportunities to live your best life overseas with the most powerful AI travel tool ever created.
       </p>
-      <div className="flex flex-col items-center gap-4 pt-4">
-        <div className="w-full max-w-[313px] relative">
-          <Input
-            ref={inputRef}
-            type="text"
-            placeholder="Where to?"
-            value={searchQuery}
-            onChange={(e) => handleSearch(e.target.value)}
-            onKeyDown={handleKeyDown}
-            onFocus={() => setIsOpen(true)}
-            className="h-12 text-base shadow-[0_4px_12px_rgba(0,0,0,0.08)] border-gray-100"
-          />
+      
+      <div className="flex flex-col items-center gap-4 pt-8">
+        <div className="w-full max-w-md relative">
+          <div className="relative">
+            <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+            <Input
+              ref={inputRef}
+              type="text"
+              placeholder="Where to?"
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
+              onKeyDown={handleKeyDown}
+              onFocus={() => setIsOpen(true)}
+              className="h-14 pl-10 text-lg shadow-lg border-transparent focus:border-primary"
+            />
+          </div>
+          
           {isOpen && (
-            <div className="absolute w-full mt-1 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-100 dark:border-gray-700 max-h-[300px] overflow-y-auto z-50">
+            <div className="absolute w-full mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 max-h-[300px] overflow-y-auto z-50">
               {isLoading ? (
-                <div className="px-4 py-2 text-gray-500 text-sm">
+                <div className="px-4 py-3 text-muted-foreground">
                   Loading...
                 </div>
               ) : results.length > 0 ? (
-                <div className="py-1">
+                <div className="py-2">
                   {results.map((city, index) => (
                     <div
                       key={`${city.name}-${city.country}`}
                       className={cn(
-                        "px-4 py-2 cursor-pointer text-left flex justify-between items-center",
-                        selectedIndex === index ? "bg-primary/10" : "hover:bg-gray-50 dark:hover:bg-gray-700"
+                        "px-4 py-3 cursor-pointer text-left flex justify-between items-center hover:bg-secondary transition-colors",
+                        selectedIndex === index && "bg-primary/10"
                       )}
                       onClick={() => handleSelectCity(city)}
                     >
@@ -121,17 +135,18 @@ export const HeroSection = () => {
                   ))}
                 </div>
               ) : (
-                <div className="px-4 py-2 text-gray-500 text-sm">
+                <div className="px-4 py-3 text-muted-foreground">
                   {searchQuery.length < 2 ? "Type at least 2 characters" : "No results found"}
                 </div>
               )}
             </div>
           )}
         </div>
+        
         <Button 
           size="lg" 
-          className="text-base px-8 py-6 font-bold relative w-[200px] bg-primary hover:bg-primary/90 transition-all duration-300"
           onClick={handleStartTravel}
+          className="button-glow text-lg px-8 py-6 rounded-xl font-bold bg-primary hover:bg-primary-dark transition-all duration-300 shadow-lg"
         >
           START TRAVELING
         </Button>
