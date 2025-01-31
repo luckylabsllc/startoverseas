@@ -149,10 +149,10 @@ export const HeroSection = () => {
             px-8 py-4 
             text-lg font-bold text-[#fff8e7]
             bg-[#e03347] hover:bg-[#c92e40]
-            border border-black
+            border border-[#fff8e7]/20
             rounded-lg
-            shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
-            hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1),inset_0_1px_4px_rgba(0,0,0,0.25)]
+            shadow-[4px_4px_0px_0px_rgba(255,248,231,0.2)]
+            hover:shadow-[2px_2px_0px_0px_rgba(255,248,231,0.2),inset_0_1px_4px_rgba(0,0,0,0.25)]
             transition-all duration-200
             transform hover:translate-y-[2px] hover:translate-x-[2px]
           "
