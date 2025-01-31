@@ -73,16 +73,6 @@ export default {
           "0%, 100%": { boxShadow: "0 0 15px rgba(234, 56, 76, 0.4)" },
           "50%": { boxShadow: "0 0 25px rgba(234, 56, 76, 0.6)" },
         },
-        flipIn: {
-          "0%": { 
-            transform: "translateY(-50%) scaleY(1.5)",
-            opacity: "0"
-          },
-          "100%": { 
-            transform: "translateY(0) scaleY(1)",
-            opacity: "1"
-          }
-        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -91,7 +81,6 @@ export default {
         slideIn: "slideIn 0.3s ease-out",
         softBounce: "softBounce 0.5s ease-in-out",
         glow: "glow 2s ease-in-out infinite",
-        flipIn: "flipIn 0.6s ease-out forwards",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],

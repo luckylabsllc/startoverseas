@@ -10,6 +10,7 @@ export const Header = () => {
     const isDarkMode = document.documentElement.classList.contains('dark');
     setIsDark(isDarkMode);
 
+    // Load JetBrains Mono font
     const link = document.createElement('link');
     link.href = 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap';
     link.rel = 'stylesheet';
@@ -22,24 +23,13 @@ export const Header = () => {
     document.documentElement.classList.toggle('dark');
   };
 
-  const text = "OVERSEAS";
-
   return (
     <header className="h-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
-        <div id="split-flap-logo" className="flex items-center text-[40px] font-bold tracking-[2px]">
-          {text.split('').map((letter, index) => (
-            <span
-              key={index}
-              className="inline-block animate-flipIn"
-              style={{
-                animationDelay: `${index * 100}ms`,
-                transformOrigin: 'center top',
-              }}
-            >
-              {letter}
-            </span>
-          ))}
+        <div className="flex items-center">
+          <span className="font-mono font-bold text-xl tracking-tight">
+            OVERSEAS
+          </span>
         </div>
         <div className="flex items-center gap-2">
           <Button
