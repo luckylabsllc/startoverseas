@@ -22,7 +22,7 @@ export const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
         <div className="flex items-center">
           <img 
-            src="/lovable-uploads/c06ea0fa-cd15-4dfe-bf45-b9a89041645f.png" 
+            src="/lovable-uploads/370ae040-dcb3-4f1d-b8b0-2d980822c088.png" 
             alt="Overseas" 
             className="h-8"
           />
