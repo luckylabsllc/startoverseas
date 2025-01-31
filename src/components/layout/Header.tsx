@@ -27,7 +27,7 @@ export const Header = () => {
     <header className="h-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
         <div className="flex items-center">
-          <span className="font-mono font-bold text-2xl tracking-tight">
+          <span className="font-mono font-bold text-xl tracking-tight">
             OVERSEAS
           </span>
         </div>
