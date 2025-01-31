@@ -1,5 +1,5 @@
 import { Header } from "@/components/layout/Header";
-import { HeroSection } from "@/components/sections/HeroSection";
+import HeroSection from "@/components/sections/HeroSection";
 import { ToolsSection } from "@/components/sections/ToolsSection";
 import { BenefitsSection } from "@/components/sections/BenefitsSection";
 import { PricingSection } from "@/components/sections/PricingSection";
