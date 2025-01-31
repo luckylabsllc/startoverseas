@@ -9,6 +9,12 @@ export const Header = () => {
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains('dark');
     setIsDark(isDarkMode);
+
+    // Load JetBrains Mono font
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
   }, []);
 
   const toggleTheme = () => {
@@ -21,11 +27,9 @@ export const Header = () => {
     <header className="h-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
         <div className="flex items-center">
-          <img 
-            src="/lovable-uploads/370ae040-dcb3-4f1d-b8b0-2d980822c088.png" 
-            alt="Overseas" 
-            className="h-8"
-          />
+          <span className="font-mono font-bold text-xl tracking-tight">
+            OVERSEAS
+          </span>
         </div>
         <div className="flex items-center gap-2">
           <Button
