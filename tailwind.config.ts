@@ -73,13 +73,13 @@ export default {
           "0%, 100%": { boxShadow: "0 0 15px rgba(234, 56, 76, 0.4)" },
           "50%": { boxShadow: "0 0 25px rgba(234, 56, 76, 0.6)" },
         },
-        flipDown: {
+        flipIn: {
           "0%": { 
-            transform: "rotateX(0deg)",
+            transform: "translateY(-50%) scaleY(1.5)",
             opacity: "0"
           },
           "100%": { 
-            transform: "rotateX(-90deg)",
+            transform: "translateY(0) scaleY(1)",
             opacity: "1"
           }
         }
@@ -91,7 +91,7 @@ export default {
         slideIn: "slideIn 0.3s ease-out",
         softBounce: "softBounce 0.5s ease-in-out",
         glow: "glow 2s ease-in-out infinite",
-        flipDown: "flipDown 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards",
+        flipIn: "flipIn 0.6s ease-out forwards",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],

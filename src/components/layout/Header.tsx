@@ -27,23 +27,19 @@ export const Header = () => {
   return (
     <header className="h-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
-        <div className="flex items-center perspective-[1000px]">
-          <span className="font-mono font-bold text-xl tracking-tight">
-            {text.split('').map((letter, index) => (
-              <span
-                key={index}
-                className="inline-block animate-flipDown"
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                  animationFillMode: 'forwards',
-                  opacity: 0,
-                  transformStyle: 'preserve-3d'
-                }}
-              >
-                {letter}
-              </span>
-            ))}
-          </span>
+        <div id="split-flap-logo" className="flex items-center text-[40px] font-bold tracking-[2px]">
+          {text.split('').map((letter, index) => (
+            <span
+              key={index}
+              className="inline-block animate-flipIn"
+              style={{
+                animationDelay: `${index * 100}ms`,
+                transformOrigin: 'center top',
+              }}
+            >
+              {letter}
+            </span>
+          ))}
         </div>
         <div className="flex items-center gap-2">
           <Button
