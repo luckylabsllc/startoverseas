@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 export const Header = () => {
   const [isDark, setIsDark] = useState(false);
-  const [isAnimated, setIsAnimated] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains('dark');
@@ -16,9 +16,9 @@ export const Header = () => {
     link.href = 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap';
     link.rel = 'stylesheet';
     document.head.appendChild(link);
-
+    
     // Trigger animation after a short delay
-    setTimeout(() => setIsAnimated(true), 100);
+    setTimeout(() => setIsLoaded(true), 100);
   }, []);
 
   const toggleTheme = () => {
@@ -27,26 +27,19 @@ export const Header = () => {
     document.documentElement.classList.toggle('dark');
   };
 
-  const text = "OVERSEAS";
-
   return (
     <header className="h-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
         <div className="flex items-center">
-          <span className="font-mono font-bold text-3xl tracking-tight flex overflow-hidden">
-            {text.split('').map((letter, index) => (
-              <span
-                key={index}
-                className="inline-block transform transition-all duration-800 ease-in-out"
-                style={{
-                  transitionDelay: `${index * 100}ms`,
-                  transform: isAnimated ? 'rotateX(0deg)' : 'rotateX(-90deg)',
-                  opacity: isAnimated ? 1 : 0,
-                }}
-              >
-                {letter}
-              </span>
-            ))}
+          <span 
+            className={`font-mono font-extrabold text-2xl tracking-tight text-foreground/90 transition-all duration-500 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+            }`}
+            style={{
+              textShadow: '0 0 1px rgba(234, 56, 76, 0.3)',
+            }}
+          >
+            OVERSEAS
           </span>
         </div>
         <div className="flex items-center gap-2">
