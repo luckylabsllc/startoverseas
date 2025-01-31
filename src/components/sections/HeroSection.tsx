@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { City, searchCities } from "@/lib/cities";
 import { cn } from "@/lib/utils";
-import { Globe, Sparkles } from "lucide-react";
+import { Globe, Sparkles, Plane } from "lucide-react";
 
 export const HeroSection = () => {
   const navigate = useNavigate();
@@ -84,9 +84,10 @@ export const HeroSection = () => {
     <section className="relative text-center py-8 space-y-4 overflow-visible">
       <div className="absolute inset-0 bg-gradient-to-b from-secondary/50 to-transparent -z-10" />
       
-      <div className="sticker mb-6">
+      <div className="relative transform -rotate-1 bg-primary/95 text-primary-foreground py-3 px-6 inline-flex items-center gap-2 shadow-lg">
         <Sparkles className="w-4 h-4" />
-        Most Powerful AI Travel Tool Ever Created
+        <span className="font-semibold">Most Powerful AI Travel Tool Ever Created</span>
+        <Plane className="w-4 h-4 animate-pulse" />
       </div>
       
       <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent leading-[1.2] pb-1">
@@ -109,7 +110,7 @@ export const HeroSection = () => {
               onChange={(e) => handleSearch(e.target.value)}
               onKeyDown={handleKeyDown}
               onFocus={() => setIsOpen(true)}
-              className="h-14 pl-10 text-lg shadow-lg border-transparent focus:border-primary"
+              className="h-14 pl-10 text-lg font-medium shadow-lg border-transparent focus:border-primary focus:ring-2 focus:ring-primary/20"
             />
           </div>
           
@@ -146,18 +147,23 @@ export const HeroSection = () => {
         <button 
           onClick={handleStartTravel}
           className="
+            relative
             px-8 py-4 
-            text-lg font-bold text-[#fff8e7]
-            bg-[#e03347] hover:bg-[#c92e40]
-            border border-black
+            text-lg font-bold text-white
+            bg-primary hover:bg-primary-dark
             rounded-lg
-            shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
-            hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1),inset_0_1px_4px_rgba(0,0,0,0.25)]
             transition-all duration-200
-            transform hover:translate-y-[2px] hover:translate-x-[2px]
+            shadow-[0_4px_14px_0_rgba(234,56,76,0.39)]
+            hover:shadow-[0_6px_20px_0_rgba(234,56,76,0.39)]
+            hover:transform hover:scale-[0.98]
+            active:scale-95
+            disabled:opacity-70
+            disabled:cursor-not-allowed
+            group
           "
         >
-          GO OVERSEAS
+          <span className="relative z-10">GO OVERSEAS</span>
+          <div className="absolute inset-0 bg-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
         </button>
       </div>
     </section>
