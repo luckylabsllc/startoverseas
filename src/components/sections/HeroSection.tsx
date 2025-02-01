@@ -84,7 +84,7 @@ export const HeroSection = () => {
     <section className="relative text-center py-4 pb-16 space-y-3 overflow-visible">
       <div className="absolute inset-0 bg-[#F5F5F7] -z-10" />
       
-      <div className="pt-20">
+      <div className="pt-10">
         <div className="sticker mb-4">
           <Sparkles className="w-4 h-4" />
           Plan Your Next Trip or Move in Seconds
