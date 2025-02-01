@@ -81,10 +81,10 @@ export const HeroSection = () => {
   }, [searchQuery]);
 
   return (
-    <section className="relative text-center py-8 space-y-4 overflow-visible bg-[#F5F5F7]">
+    <section className="relative text-center py-4 space-y-3 overflow-visible bg-[#F5F5F7]">
       <div className="absolute inset-0 bg-gradient-to-b from-secondary/50 to-transparent -z-10" />
       
-      <div className="sticker mb-6">
+      <div className="sticker mb-4">
         <Sparkles className="w-4 h-4" />
         Plan Your Next Trip or Move in Seconds
       </div>
