@@ -86,11 +86,11 @@ export const HeroSection = () => {
       
       <div className="sticker mb-6">
         <Sparkles className="w-4 h-4" />
-        Instantly Find the Best Places to Visit, Work & Live
+        Plan Your Next Trip or Move in Seconds
       </div>
       
       <h1 className="text-5xl md:text-6xl font-[400] tracking-tight leading-[1.2] pb-1">
-        <span className="text-gray-600">Your App for Everything</span>{" "}
+        <span className="text-gray-400">Your App for Everything</span>{" "}
         <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Overseas</span>
       </h1>
       
@@ -99,7 +99,7 @@ export const HeroSection = () => {
       </p>
       
       <div className="flex flex-col items-center gap-4 pt-4">
-        <div className="w-full max-w-md px-4 sm:px-0 relative">
+        <div className="w-full max-w-md px-4 sm:px-0 relative sm:w-[90%]">
           <div className="relative">
             <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <Input
