@@ -81,7 +81,7 @@ export const HeroSection = () => {
   }, [searchQuery]);
 
   return (
-    <section className="relative text-center py-4 pb-16 space-y-3 overflow-visible">
+    <section className="relative text-center py-4 pb-6 space-y-3 overflow-visible">
       <div className="absolute inset-0 bg-[#F5F5F7] -z-10" />
       
       <div className="pt-10">
