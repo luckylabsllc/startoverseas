@@ -81,7 +81,7 @@ export const HeroSection = () => {
   }, [searchQuery]);
 
   return (
-    <section className="relative text-center py-8 space-y-4 overflow-visible">
+    <section className="relative text-center py-8 space-y-4 overflow-visible bg-[#F5F5F7]">
       <div className="absolute inset-0 bg-gradient-to-b from-secondary/50 to-transparent -z-10" />
       
       <div className="sticker mb-6">
@@ -89,7 +89,7 @@ export const HeroSection = () => {
         Instantly Find the Best Places to Visit, Work & Live
       </div>
       
-      <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.2] pb-1">
+      <h1 className="text-5xl md:text-6xl font-[400] tracking-tight leading-[1.2] pb-1">
         <span className="text-gray-600">Your App for Everything</span>{" "}
         <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Overseas</span>
       </h1>
