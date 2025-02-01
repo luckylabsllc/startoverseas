@@ -81,7 +81,7 @@ export const HeroSection = () => {
   }, [searchQuery]);
 
   return (
-    <section className="relative text-center py-4 space-y-3 overflow-visible">
+    <section className="relative text-center py-4 pb-16 space-y-3 overflow-visible">
       <div className="absolute inset-0 bg-[#F5F5F7] -z-10" />
       
       <div className="sticker mb-4">
@@ -98,7 +98,7 @@ export const HeroSection = () => {
         Discover the best places, visas, and costs—instantly.
       </p>
       
-      <div className="flex flex-col items-center gap-4 pt-4">
+      <div className="flex flex-col items-center gap-4 pt-6">
         <div className="w-full max-w-md px-8 sm:px-0 relative sm:w-[90%]">
           <div className="relative">
             <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
