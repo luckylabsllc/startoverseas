@@ -151,8 +151,8 @@ export const HeroSection = () => {
             bg-[#e03347] hover:bg-[#c92e40]
             border border-black
             rounded-lg
-            shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
-            hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1),inset_0_1px_4px_rgba(0,0,0,0.25)]
+            shadow-[4px_4px_0px_0px_rgba(0,0,0,0.25)]
+            hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.25),inset_0_1px_4px_rgba(0,0,0,0.25)]
             transition-all duration-200
             transform hover:translate-y-[2px] hover:translate-x-[2px]
           "
