@@ -86,7 +86,7 @@ export const HeroSection = () => {
       
       <div className="sticker mb-6">
         <Sparkles className="w-4 h-4" />
-        Most Powerful AI Travel Tool Ever Created
+        Instantly Find the Best Places to Visit, Work & Live
       </div>
       
       <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent leading-[1.2] pb-1">
@@ -94,7 +94,7 @@ export const HeroSection = () => {
       </h1>
       
       <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
-        Unlock banger opportunities to live your best life overseas.
+        Discover the best places, visas, and costs—instantly.
       </p>
       
       <div className="flex flex-col items-center gap-4 pt-4">
@@ -157,7 +157,7 @@ export const HeroSection = () => {
             transform hover:translate-y-[2px] hover:translate-x-[2px]
           "
         >
-          GO OVERSEAS
+          EXPLORE NOW
         </button>
       </div>
     </section>
