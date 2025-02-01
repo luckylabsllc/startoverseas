@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const pricingTiers = [
   {
     name: "Pro",
-    price: "$49",
+    price: "$29",
     period: "/month",
     description: "Full access to all tools for independent explorers",
     features: [
@@ -22,7 +22,7 @@ const pricingTiers = [
   },
   {
     name: "Concierge",
-    price: "$599",
+    price: "$299",
     period: "/month",
     description: "Everything in Pro, plus hands-on expert support",
     features: [
