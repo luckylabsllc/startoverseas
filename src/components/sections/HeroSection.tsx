@@ -89,8 +89,9 @@ export const HeroSection = () => {
         Instantly Find the Best Places to Visit, Work & Live
       </div>
       
-      <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent leading-[1.2] pb-1">
-        Your App for Everything Overseas
+      <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.2] pb-1">
+        <span className="text-gray-800">Your App for Everything</span>{" "}
+        <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Overseas</span>
       </h1>
       
       <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
