@@ -27,8 +27,9 @@ export const Header = () => {
     <header className="h-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
         <div className="flex items-center">
-          <span className="font-mono font-bold text-3xl tracking-tight text-gray-500 hover:animate-softBounce transition-all duration-300">
+          <span className="font-mono font-bold text-3xl tracking-tight text-gray-500 hover:animate-softBounce transition-all duration-300 relative">
             OVERSEAS
+            <div className="absolute left-0 right-0 top-1/2 h-[1px] bg-white transform -translate-y-1/2"></div>
           </span>
         </div>
         <div className="flex items-center gap-2">
