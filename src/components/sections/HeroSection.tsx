@@ -104,7 +104,7 @@ export const HeroSection = () => {
             <Input
               ref={inputRef}
               type="text"
-              placeholder="Where do you want to live?"
+              placeholder="Country, city, or airport"
               value={searchQuery}
               onChange={(e) => handleSearch(e.target.value)}
               onKeyDown={handleKeyDown}
