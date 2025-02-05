@@ -2,75 +2,68 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, MapPin, Globe2, Clock, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-interface CityInfo {
-  temperature: number;
-  description: string;
-  language: string;
-  population: string;
-  famousFor: string;
+interface CountryInfo {
+  name: {
+    common: string;
+    official: string;
+  };
+  capital: string[];
+  population: number;
+  area: number;
+  region: string;
+  subregion: string;
+  languages: Record<string, string>;
+  currencies: Record<string, { name: string; symbol: string }>;
+  timezones: string[];
+  car: {
+    side: string;
+  };
 }
 
-const fetchCityInfo = async (cityQuery: string): Promise<CityInfo> => {
-  // First, get the weather
-  const weatherResponse = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cityQuery)}&units=metric&appid=8d9b58b6c4654f1f41f6ce21a844f03c`
-  );
-  const weatherData = await weatherResponse.json();
+const fetchCountryInfo = async (cityQuery: string): Promise<CountryInfo> => {
+  // Extract country name from city query (e.g., "Bangkok, Thailand" -> "Thailand")
+  const country = cityQuery.split(',')[1]?.trim() || cityQuery.trim();
   
-  // Then, get city information from OpenAI
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: "gpt-4",
-      messages: [
-        {
-          role: "system",
-          content: "You are a helpful travel assistant. Provide concise information about cities.",
-        },
-        {
-          role: "user",
-          content: `Provide the following information about ${cityQuery} in JSON format:
-            1. Primary language spoken
-            2. Approximate population
-            3. What the city is most famous for
-            Keep each response very brief (1-2 sentences max).`,
-        },
-      ],
-    }),
-  });
-
-  const aiData = await response.json();
-  const cityData = JSON.parse(aiData.choices[0].message.content);
-
-  return {
-    temperature: Math.round(weatherData.main.temp),
-    description: weatherData.weather[0].description,
-    language: cityData.language,
-    population: cityData.population,
-    famousFor: cityData.famousFor,
-  };
+  const response = await fetch(
+    `https://restcountries.com/v3.1/name/${encodeURIComponent(country)}`
+  );
+  
+  if (!response.ok) {
+    throw new Error('Failed to fetch country information');
+  }
+  
+  const data = await response.json();
+  return data[0];
 };
 
 const DossierPage = () => {
   const { cityQuery } = useParams<{ cityQuery: string }>();
 
-  const { data: cityInfo, isLoading } = useQuery({
-    queryKey: ["cityInfo", cityQuery],
-    queryFn: () => fetchCityInfo(cityQuery || ""),
+  const { data: countryInfo, isLoading } = useQuery({
+    queryKey: ["countryInfo", cityQuery],
+    queryFn: () => fetchCountryInfo(cityQuery || ""),
     enabled: !!cityQuery,
   });
 
+  const formatNumber = (num: number) => {
+    return new Intl.NumberFormat().format(num);
+  };
+
+  const getLanguages = (langs: Record<string, string>) => {
+    return Object.values(langs).join(", ");
+  };
+
+  const getCurrencies = (currencies: Record<string, { name: string; symbol: string }>) => {
+    return Object.keys(currencies).join(", ");
+  };
+
   return (
     <div className="min-h-screen bg-background p-4">
-      <div className="max-w-2xl mx-auto space-y-6">
+      <div className="max-w-3xl mx-auto space-y-6">
         <Button variant="ghost" asChild className="mb-6">
           <Link to="/">
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -78,35 +71,88 @@ const DossierPage = () => {
           </Link>
         </Button>
 
-        <h1 className="text-4xl font-bold text-center mb-8">{cityQuery}</h1>
-
         {isLoading ? (
           <div className="space-y-4">
             <Skeleton className="h-[200px] w-full" />
-            <Skeleton className="h-[100px] w-full" />
+            <Skeleton className="h-[400px] w-full" />
+          </div>
+        ) : countryInfo ? (
+          <div className="space-y-8 animate-fadeIn">
+            <div className="text-center space-y-4">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full">
+                <MapPin className="w-4 h-4" />
+                Location Information
+              </div>
+              <h1 className="text-4xl font-bold">{countryInfo.name.common}</h1>
+            </div>
+
+            <div className="grid gap-6">
+              <Card className="p-6 space-y-4">
+                <h2 className="text-xl font-semibold">Basic Information</h2>
+                <div className="grid gap-4">
+                  <div>
+                    <p className="text-sm text-muted-foreground">Official Name</p>
+                    <p className="font-medium">{countryInfo.name.official}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Capital</p>
+                    <p className="font-medium">{countryInfo.capital?.join(", ")}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Population</p>
+                    <p className="font-medium">{formatNumber(countryInfo.population)}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Area</p>
+                    <p className="font-medium">{formatNumber(countryInfo.area)} km²</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-6 space-y-4">
+                <h2 className="text-xl font-semibold">Additional Details</h2>
+                <div className="grid gap-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-muted-foreground">Region</p>
+                      <p className="font-medium">{countryInfo.region}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Subregion</p>
+                      <p className="font-medium">{countryInfo.subregion}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Languages</p>
+                    <p className="font-medium">{getLanguages(countryInfo.languages)}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Currencies</p>
+                    <p className="font-medium">{getCurrencies(countryInfo.currencies)}</p>
+                  </div>
+                  <div className="flex justify-between items-start">
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4 text-muted-foreground" />
+                      <div>
+                        <p className="text-sm text-muted-foreground">Timezone(s)</p>
+                        <p className="font-medium">{countryInfo.timezones.join(", ")}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Car className="w-4 h-4 text-muted-foreground" />
+                      <div>
+                        <p className="text-sm text-muted-foreground">Driving Side</p>
+                        <p className="font-medium capitalize">{countryInfo.car.side}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
           </div>
         ) : (
-          <div className="grid gap-4 md:grid-cols-2">
-            <Card className="p-6 space-y-2">
-              <h2 className="text-xl font-semibold">Current Weather</h2>
-              <p className="text-3xl font-bold">{cityInfo?.temperature}°C</p>
-              <p className="text-muted-foreground capitalize">{cityInfo?.description}</p>
-            </Card>
-
-            <Card className="p-6 space-y-2">
-              <h2 className="text-xl font-semibold">Language</h2>
-              <p>{cityInfo?.language}</p>
-            </Card>
-
-            <Card className="p-6 space-y-2">
-              <h2 className="text-xl font-semibold">Population</h2>
-              <p>{cityInfo?.population}</p>
-            </Card>
-
-            <Card className="p-6 space-y-2">
-              <h2 className="text-xl font-semibold">Famous For</h2>
-              <p>{cityInfo?.famousFor}</p>
-            </Card>
+          <div className="text-center py-12">
+            <p className="text-lg text-muted-foreground">No information found</p>
           </div>
         )}
       </div>
