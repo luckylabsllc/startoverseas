@@ -2,21 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { Sun, Moon, User } from "lucide-react";
 import { useState, useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
 import { toast } from "sonner";
-
-// Check if environment variables are available
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.error('Supabase URL and Anon Key are required');
-}
-
-const supabase = createClient(
-  supabaseUrl || '',
-  supabaseAnonKey || ''
-);
+import { supabase } from "@/integrations/supabase/client";
 
 export const Header = () => {
   const [isDark, setIsDark] = useState(false);
@@ -47,11 +34,6 @@ export const Header = () => {
   };
 
   const handleSignIn = async () => {
-    if (!supabaseUrl || !supabaseAnonKey) {
-      toast.error("Supabase configuration is missing");
-      return;
-    }
-
     try {
       setIsLoading(true);
       const { error } = await supabase.auth.signInWithOAuth({
