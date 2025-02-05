@@ -23,6 +23,12 @@ export const HeroSection = () => {
       clearTimeout(timeoutRef.current);
     }
 
+    if (!value) {
+      setIsOpen(false);
+      setResults([]);
+      return;
+    }
+
     timeoutRef.current = setTimeout(async () => {
       if (value.length >= 2) {
         setIsLoading(true);
@@ -30,8 +36,10 @@ export const HeroSection = () => {
         setResults(searchResults);
         setSelectedIndex(0);
         setIsLoading(false);
+        setIsOpen(searchResults.length > 0);
       } else {
         setResults([]);
+        setIsOpen(false);
       }
     }, 200);
   };
@@ -67,7 +75,7 @@ export const HeroSection = () => {
     const cityQuery = `${city.name}, ${city.country}`;
     setSearchQuery(cityQuery);
     setIsOpen(false);
-    setResults([]); // Clear results immediately
+    setResults([]);
     inputRef.current?.blur();
   };
 
