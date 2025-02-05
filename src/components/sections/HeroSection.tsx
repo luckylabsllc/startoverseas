@@ -23,7 +23,7 @@ export const HeroSection = () => {
       clearTimeout(timeoutRef.current);
     }
 
-    if (!value) {
+    if (!value || value.length < 2) {
       setIsOpen(false);
       setResults([]);
       return;
@@ -37,9 +37,6 @@ export const HeroSection = () => {
         setSelectedIndex(0);
         setIsLoading(false);
         setIsOpen(searchResults.length > 0);
-      } else {
-        setResults([]);
-        setIsOpen(false);
       }
     }, 200);
   };
@@ -85,10 +82,6 @@ export const HeroSection = () => {
     }
   };
 
-  useEffect(() => {
-    setIsOpen(searchQuery.length > 0);
-  }, [searchQuery]);
-
   return (
     <section className="relative text-center py-4 pb-6 space-y-3 overflow-visible">
       <div className="absolute inset-0 bg-[#F5F5F7] -z-10" />
@@ -119,7 +112,6 @@ export const HeroSection = () => {
                 value={searchQuery}
                 onChange={(e) => handleSearch(e.target.value)}
                 onKeyDown={handleKeyDown}
-                onFocus={() => setIsOpen(true)}
                 className="h-14 pl-10 text-lg shadow-lg border-transparent focus:border-primary"
               />
             </div>
@@ -147,7 +139,7 @@ export const HeroSection = () => {
                   </div>
                 ) : (
                   <div className="px-4 py-3 text-muted-foreground">
-                    {searchQuery.length < 2 ? "Type at least 2 characters" : "No results found"}
+                    Type at least 2 characters
                   </div>
                 )}
               </div>
