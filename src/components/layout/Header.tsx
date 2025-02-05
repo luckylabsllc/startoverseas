@@ -5,9 +5,17 @@ import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { toast } from "sonner";
 
+// Check if environment variables are available
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.error('Supabase URL and Anon Key are required');
+}
+
 const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
+  supabaseUrl || '',
+  supabaseAnonKey || ''
 );
 
 export const Header = () => {
@@ -39,6 +47,11 @@ export const Header = () => {
   };
 
   const handleSignIn = async () => {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      toast.error("Supabase configuration is missing");
+      return;
+    }
+
     try {
       setIsLoading(true);
       const { error } = await supabase.auth.signInWithOAuth({
