@@ -25,15 +25,22 @@ interface CountryInfo {
 }
 
 const fetchCountryInfo = async (cityQuery: string): Promise<CountryInfo> => {
-  // Extract country name from city query (e.g., "Bangkok, Thailand" -> "Thailand")
-  const country = cityQuery.split(',')[1]?.trim() || cityQuery.trim();
+  // Ensure we have a valid query
+  if (!cityQuery) throw new Error('No city query provided');
+  
+  // Split the query and get the last part which should be the country
+  const parts = cityQuery.split(',');
+  if (parts.length < 2) throw new Error('Invalid city query format');
+  
+  const country = parts[parts.length - 1].trim();
+  console.log('Fetching country info for:', country);
   
   const response = await fetch(
     `https://restcountries.com/v3.1/name/${encodeURIComponent(country)}`
   );
   
   if (!response.ok) {
-    throw new Error('Failed to fetch country information');
+    throw new Error(`Failed to fetch country information for ${country}`);
   }
   
   const data = await response.json();
