@@ -7,18 +7,16 @@ import { Footer } from "@/components/layout/Footer";
 import { HelpToggle } from "@/components/layout/HelpToggle";
 
 const Index = () => {
-  console.log("Rendering Index page");
-  
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen bg-background">
       <Header />
-      <main className="flex-1">
+      <div className="space-y-16">
         <HeroSection />
         <ToolsSection />
         <BenefitsSection />
         <PricingSection />
-      </main>
-      <Footer />
+        <Footer />
+      </div>
       <HelpToggle />
     </div>
   );

@@ -1,31 +1,21 @@
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Sun, Moon, User } from "lucide-react";
 import { useState, useEffect } from "react";
-import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
 
 export const Header = () => {
   const [isDark, setIsDark] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains('dark');
     setIsDark(isDarkMode);
 
+    // Load JetBrains Mono font
     const link = document.createElement('link');
     link.href = 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap';
     link.rel = 'stylesheet';
     document.head.appendChild(link);
-
-    // Check if user is already signed in
-    supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_IN' && session) {
-        navigate('/dashboard');
-      }
-    });
-  }, [navigate]);
+  }, []);
 
   const toggleTheme = () => {
     const newTheme = !isDark;
@@ -33,32 +23,13 @@ export const Header = () => {
     document.documentElement.classList.toggle('dark');
   };
 
-  const handleSignIn = async () => {
-    try {
-      setIsLoading(true);
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/dashboard`
-        }
-      });
-      
-      if (error) throw error;
-    } catch (error) {
-      toast.error("Failed to sign in with Google");
-      console.error("Sign in error:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
     <header className="h-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
         <div className="flex items-center">
-          <Link to="/" className="font-mono font-bold text-3xl tracking-tight text-primary hover:animate-softBounce transition-all duration-300">
+          <span className="font-mono font-bold text-3xl tracking-tight text-primary hover:animate-softBounce transition-all duration-300">
             OVERSEAS
-          </Link>
+          </span>
         </div>
         <div className="flex items-center gap-2">
           <Button
@@ -78,10 +49,11 @@ export const Header = () => {
             variant="outline"
             size="icon"
             className="w-8 h-8 rounded-full border border-foreground/20 bg-black/5 dark:bg-white/5"
-            onClick={handleSignIn}
-            disabled={isLoading}
+            asChild
           >
-            <User className="h-4 w-4" />
+            <Link to="/signin">
+              <User className="h-4 w-4" />
+            </Link>
           </Button>
         </div>
       </div>

@@ -1,17 +1,4 @@
 import {
-  Calculator,
-  FileCheck,
-  Plane,
-  Building2,
-  MessagesSquare,
-  Activity,
-  Wallet,
-  HeartHandshake,
-  LogOut,
-} from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
-import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
@@ -21,87 +8,52 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import {
+  Home,
+  Calculator,
+  Landmark,
+  Bus,
+  Building2,
+  Globe2,
+  Heart,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
-const tools = [
-  {
-    title: "Cost Calculator",
-    path: "/dashboard/cost-calculator",
-    icon: Calculator,
-  },
-  {
-    title: "Visa Finder",
-    path: "/dashboard/visa-finder",
-    icon: FileCheck,
-  },
-  {
-    title: "Transportation",
-    path: "/dashboard/transportation",
-    icon: Plane,
-  },
-  {
-    title: "Accommodations",
-    path: "/dashboard/accommodations",
-    icon: Building2,
-  },
-  {
-    title: "Cultural Integration",
-    path: "/dashboard/cultural-guide",
-    icon: MessagesSquare,
-  },
-  {
-    title: "Healthcare",
-    path: "/dashboard/healthcare",
-    icon: Activity,
-  },
-  {
-    title: "Banking & Finances",
-    path: "/dashboard/banking",
-    icon: Wallet,
-  },
-  {
-    title: "Mental Wellness",
-    path: "/dashboard/wellness",
-    icon: HeartHandshake,
-  },
+const menuItems = [
+  { title: "Dashboard", icon: Home, path: "/" },
+  { title: "Cost Calculator", icon: Calculator, path: "/cost-calculator" },
+  { title: "Visa Finder", icon: Landmark, path: "/visa-finder" },
+  { title: "Transportation", icon: Bus, path: "/transportation" },
+  { title: "Accommodations", icon: Building2, path: "/accommodations" },
+  { title: "Culture Guide", icon: Globe2, path: "/culture-guide" },
+  { title: "Healthcare", icon: Heart, path: "/healthcare" },
 ];
 
 export function AppSidebar() {
-  const navigate = useNavigate();
-
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    navigate("/");
-  };
-
   return (
     <Sidebar>
       <SidebarContent>
+        <div className="p-6">
+          <img 
+            src="/lovable-uploads/376e8f7b-c13e-491a-8659-c7089ad8957d.png" 
+            alt="Overseas Logo" 
+            className="w-full h-auto max-w-[200px] mx-auto"
+          />
+        </div>
         <SidebarGroup>
-          <SidebarGroupLabel>Tools</SidebarGroupLabel>
+          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {tools.map((item) => (
+              {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.path} className="flex items-center gap-2">
-                      <item.icon className="h-4 w-4" />
+                    <Link to={item.path} className="flex items-center gap-3">
+                      <item.icon className="h-5 w-5" />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-        <SidebarGroup className="mt-auto">
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton onClick={handleSignOut} className="flex items-center gap-2 text-red-500">
-                  <LogOut className="h-4 w-4" />
-                  <span>Sign Out</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
