@@ -67,6 +67,7 @@ export const HeroSection = () => {
     const cityQuery = `${city.name}, ${city.country}`;
     setSearchQuery(cityQuery);
     setIsOpen(false);
+    setResults([]); // Clear results immediately
     inputRef.current?.blur();
   };
 
@@ -100,7 +101,7 @@ export const HeroSection = () => {
         </p>
         
         <div className="flex flex-col items-center gap-4 pt-14">
-          <div className="w-full max-w-md px-8 sm:px-0 relative sm:w-[90%]">
+          <div className="w-full max-w-md px-8 sm:px-0 relative sm:w-[90%] space-y-2.5">
             <div className="relative">
               <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <Input
@@ -116,7 +117,7 @@ export const HeroSection = () => {
             </div>
             
             {isOpen && (
-              <div className="absolute w-full mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 max-h-[300px] overflow-y-auto z-50">
+              <div className="absolute w-full mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 max-h-[300px] overflow-y-auto z-50 transition-all duration-150">
                 {isLoading ? (
                   <div className="px-4 py-3 text-muted-foreground">
                     Loading...
@@ -127,7 +128,7 @@ export const HeroSection = () => {
                       <div
                         key={`${city.name}-${city.country}`}
                         className={cn(
-                          "px-4 py-3 cursor-pointer text-left flex justify-between items-center hover:bg-secondary transition-colors",
+                          "px-4 py-3 cursor-pointer text-left flex justify-between items-center hover:bg-secondary transition-colors duration-150",
                           selectedIndex === index && "bg-primary/10"
                         )}
                         onClick={() => handleSelectCity(city)}
