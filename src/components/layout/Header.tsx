@@ -85,11 +85,9 @@ export const Header = () => {
                 variant="outline"
                 size="icon"
                 className="w-8 h-8 rounded-full border border-foreground/20 bg-black/5 dark:bg-white/5"
-                asChild
+                onClick={() => navigate('/dashboard')}
               >
-                <Link to="/dashboard">
-                  <User className="h-4 w-4" />
-                </Link>
+                <User className="h-4 w-4" />
               </Button>
               <Button
                 variant="ghost"
