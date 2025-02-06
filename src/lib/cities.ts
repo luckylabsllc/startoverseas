@@ -1,3 +1,4 @@
+
 export interface City {
   name: string;
   country: string;
@@ -20,15 +21,23 @@ export const searchCities = async (query: string): Promise<City[]> => {
   if (!query || query.length < 2) return [];
 
   try {
-    // Increase limit to get more results that we can sort through
+    // Add error handling for the fetch request
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
     const response = await fetch(
       `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
         query
-      )}&format=json&addressdetails=1&featureType=city&limit=100`
+      )}&format=json&addressdetails=1&limit=100`,
+      {
+        signal: controller.signal
+      }
     );
 
+    clearTimeout(timeoutId);
+
     if (!response.ok) {
-      console.error('Failed to fetch cities');
+      console.error('Failed to fetch cities:', response.status, response.statusText);
       return [];
     }
 
@@ -56,12 +65,17 @@ export const searchCities = async (query: string): Promise<City[]> => {
       ).values()
     );
 
-    // Return top 100 results sorted by popularity
+    // Return top 10 results sorted by popularity
     return uniqueCities
       .sort((a, b) => b.popularity - a.popularity)
-      .slice(0, 100);
+      .slice(0, 10);
   } catch (error) {
-    console.error('Error fetching cities:', error);
+    // Improved error logging
+    if (error instanceof Error) {
+      console.error('Error fetching cities:', error.message);
+    } else {
+      console.error('Unknown error fetching cities:', error);
+    }
     return [];
   }
 };

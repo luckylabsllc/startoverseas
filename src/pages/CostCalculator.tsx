@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -26,12 +25,16 @@ const CostCalculator = () => {
     queryKey: ['cities', sourceCitySearch],
     queryFn: () => searchCities(sourceCitySearch),
     enabled: sourceCitySearch.length >= 2,
+    retry: false,
+    staleTime: 30000, // Cache results for 30 seconds
   });
 
   const { data: targetCities, isLoading: isLoadingTarget } = useQuery({
     queryKey: ['cities', targetCitySearch],
     queryFn: () => searchCities(targetCitySearch),
     enabled: targetCitySearch.length >= 2,
+    retry: false,
+    staleTime: 30000, // Cache results for 30 seconds
   });
 
   const handleCompare = async () => {
