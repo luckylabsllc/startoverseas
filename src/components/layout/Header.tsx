@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Sun, Moon, User } from "lucide-react";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -9,6 +9,7 @@ export const Header = () => {
   const [isDark, setIsDark] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -28,10 +29,13 @@ export const Header = () => {
     // Subscribe to auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setIsAuthenticated(!!session);
+      if (!session && location.pathname === '/dashboard') {
+        navigate('/signin');
+      }
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [navigate, location.pathname]);
 
   const toggleTheme = () => {
     const newTheme = !isDark;
@@ -54,6 +58,14 @@ export const Header = () => {
         description: "Failed to sign out. Please try again.",
         variant: "destructive",
       });
+    }
+  };
+
+  const handleProfileClick = () => {
+    if (isAuthenticated) {
+      navigate('/dashboard');
+    } else {
+      navigate('/signin');
     }
   };
 
@@ -85,7 +97,7 @@ export const Header = () => {
                 variant="outline"
                 size="icon"
                 className="w-8 h-8 rounded-full border border-foreground/20 bg-black/5 dark:bg-white/5"
-                onClick={() => navigate('/dashboard')}
+                onClick={handleProfileClick}
               >
                 <User className="h-4 w-4" />
               </Button>
@@ -102,11 +114,9 @@ export const Header = () => {
               variant="outline"
               size="icon"
               className="w-8 h-8 rounded-full border border-foreground/20 bg-black/5 dark:bg-white/5"
-              asChild
+              onClick={handleProfileClick}
             >
-              <Link to="/signin">
-                <User className="h-4 w-4" />
-              </Link>
+              <User className="h-4 w-4" />
             </Button>
           )}
         </div>
