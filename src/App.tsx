@@ -44,8 +44,8 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <TooltipProvider>
         <Header />
         <Routes>
           <Route path="/" element={<Index />} />
@@ -71,8 +71,8 @@ const App = () => (
         </Routes>
         <Toaster />
         <Sonner />
-      </BrowserRouter>
-    </TooltipProvider>
+      </TooltipProvider>
+    </BrowserRouter>
   </QueryClientProvider>
 );
 
