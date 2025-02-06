@@ -1,5 +1,7 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DollarSign, FileCheck, Plane, Building2, MessagesSquare, Activity, Wallet, HeartHandshake, Lock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const tools = [
   {
@@ -61,6 +63,12 @@ const tools = [
 ];
 
 export const ToolsSection = () => {
+  const navigate = useNavigate();
+
+  const handleToolClick = (path: string) => {
+    navigate(path);
+  };
+
   return (
     <section className="relative py-20 w-screen -ml-[50vw] left-1/2">
       <div className="absolute inset-0 bg-[#f8f9fa] dark:bg-gray-900 mix-blend-multiply bg-opacity-50" style={{ backgroundColor: 'rgba(234, 56, 76, 0.03)' }}></div>
@@ -72,7 +80,11 @@ export const ToolsSection = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {tools.map((tool) => (
-            <Card key={tool.title} className="hover-lift relative overflow-hidden dark:bg-gray-800 dark:border-gray-700">
+            <Card 
+              key={tool.title} 
+              className="hover-lift relative overflow-hidden dark:bg-gray-800 dark:border-gray-700 cursor-pointer hover:shadow-lg transition-shadow"
+              onClick={() => handleToolClick(tool.path)}
+            >
               <div className="absolute top-0 right-0 p-2">
                 <Lock className="w-4 h-4 text-muted-foreground" />
               </div>

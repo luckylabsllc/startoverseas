@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,6 +11,7 @@ import SignIn from "./pages/SignIn";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import DossierPage from "./pages/DossierPage";
+import CostCalculator from "./pages/CostCalculator";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +57,14 @@ const App = () => (
             } 
           />
           <Route path="/dossier/:cityQuery" element={<DossierPage />} />
+          <Route 
+            path="/cost-calculator" 
+            element={
+              <ProtectedRoute>
+                <CostCalculator />
+              </ProtectedRoute>
+            } 
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
