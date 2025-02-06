@@ -29,7 +29,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   if (isAuthenticated === null) {
-    return null; // or a loading spinner
+    return null;
   }
 
   if (!isAuthenticated) {
@@ -55,8 +55,7 @@ const App = () => (
             } 
           />
           <Route path="/dossier/:cityQuery" element={<DossierPage />} />
-          <Route path="/404" element={<NotFound />} />
-          <Route path="*" element={<Navigate to="/404" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
       <Toaster />

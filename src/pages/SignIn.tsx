@@ -18,7 +18,7 @@ export default function SignIn() {
     };
     checkSession();
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session) {
         navigate('/dashboard', { replace: true });
       }
@@ -32,7 +32,7 @@ export default function SignIn() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/dashboard`,
+          redirectTo: window.location.origin + '/dashboard'
         }
       });
       if (error) throw error;
