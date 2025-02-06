@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Sun, Moon, User } from "lucide-react";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -9,7 +9,6 @@ export const Header = () => {
   const [isDark, setIsDark] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -29,13 +28,10 @@ export const Header = () => {
     // Subscribe to auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setIsAuthenticated(!!session);
-      if (!session && location.pathname === '/dashboard') {
-        navigate('/signin');
-      }
     });
 
     return () => subscription.unsubscribe();
-  }, [navigate, location.pathname]);
+  }, []);
 
   const toggleTheme = () => {
     const newTheme = !isDark;
@@ -47,7 +43,7 @@ export const Header = () => {
     try {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
-      navigate('/');
+      navigate('/', { replace: true });
       toast({
         title: "Signed out successfully",
         description: "Come back soon!",
@@ -63,9 +59,9 @@ export const Header = () => {
 
   const handleProfileClick = () => {
     if (isAuthenticated) {
-      navigate('/dashboard');
+      navigate('/dashboard', { replace: true });
     } else {
-      navigate('/signin');
+      navigate('/signin', { replace: true });
     }
   };
 
