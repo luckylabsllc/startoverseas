@@ -21,7 +21,6 @@ export const searchCities = async (query: string): Promise<City[]> => {
   if (!query || query.length < 2) return [];
 
   try {
-    // Add error handling for the fetch request
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
 
@@ -43,35 +42,44 @@ export const searchCities = async (query: string): Promise<City[]> => {
 
     const data: NominatimResponse[] = await response.json();
     
+    if (!Array.isArray(data)) {
+      console.error('Invalid response format:', data);
+      return [];
+    }
+    
     // Process and sort results
     const cities = data
       .map(item => {
+        if (!item || !item.address) return null;
         const cityName = item.address.city || item.address.town || item.address.village || '';
         if (!cityName) return null;
         
         return {
           name: cityName,
-          country: item.address.country,
+          country: item.address.country || 'Unknown',
           // Use the API's importance score or default to 0.5
           popularity: item.importance || 0.5
         };
       })
       .filter((city): city is City => city !== null);
 
-    // Only create Map if we have cities
-    if (cities.length === 0) return [];
+    // Return empty array if no cities found
+    if (!cities || cities.length === 0) return [];
 
-    // Sort by importance/popularity and remove duplicates
-    const uniqueCities = Array.from(
-      new Map(
-        cities.map(city => [`${city.name}-${city.country}`, city])
-      ).values()
-    );
+    // Create a unique identifier for each city
+    const uniqueCitiesMap = new Map();
+    cities.forEach(city => {
+      const key = `${city.name}-${city.country}`;
+      if (!uniqueCitiesMap.has(key) || city.popularity > uniqueCitiesMap.get(key).popularity) {
+        uniqueCitiesMap.set(key, city);
+      }
+    });
 
-    // Return top 10 results sorted by popularity
-    return uniqueCities
+    // Convert map back to array and sort by popularity
+    return Array.from(uniqueCitiesMap.values())
       .sort((a, b) => b.popularity - a.popularity)
       .slice(0, 10);
+
   } catch (error) {
     // Improved error logging
     if (error instanceof Error) {
@@ -82,3 +90,4 @@ export const searchCities = async (query: string): Promise<City[]> => {
     return [];
   }
 };
+
