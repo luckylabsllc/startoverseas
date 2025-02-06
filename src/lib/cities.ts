@@ -58,6 +58,9 @@ export const searchCities = async (query: string): Promise<City[]> => {
       })
       .filter((city): city is City => city !== null);
 
+    // Only create Map if we have cities
+    if (cities.length === 0) return [];
+
     // Sort by importance/popularity and remove duplicates
     const uniqueCities = Array.from(
       new Map(
