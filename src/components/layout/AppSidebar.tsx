@@ -1,3 +1,4 @@
+
 import {
   Sidebar,
   SidebarContent,
@@ -34,11 +35,9 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <div className="p-6">
-          <img 
-            src="/lovable-uploads/376e8f7b-c13e-491a-8659-c7089ad8957d.png" 
-            alt="Overseas Logo" 
-            className="w-full h-auto max-w-[200px] mx-auto"
-          />
+          <Link to="/" className="font-mono font-bold text-3xl tracking-tight text-primary hover:animate-softBounce transition-all duration-300">
+            OVERSEAS
+          </Link>
         </div>
         <SidebarGroup>
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
