@@ -16,7 +16,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-// This is a simplified list - in a real app, you'd want a complete list
 const countries = [
   { value: "us", label: "United States" },
   { value: "uk", label: "United Kingdom" },
@@ -49,7 +48,7 @@ export function ComboboxDemo({ value, onChange, placeholder }: ComboboxDemoProps
           className="w-full justify-between"
         >
           {value
-            ? countries.find((country) => country.value === value)?.label
+            ? countries.find((country) => country.value === value)?.label ?? placeholder
             : placeholder || "Select country..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
