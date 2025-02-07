@@ -73,8 +73,10 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
 const AppHeader = () => {
   const location = useLocation();
-  // Hide header on dashboard routes
-  if (location.pathname === '/dashboard' || location.pathname === '/cost-calculator') {
+  // Hide header on dashboard routes and signin page
+  if (location.pathname === '/dashboard' || 
+      location.pathname === '/cost-calculator' || 
+      location.pathname === '/signin') {
     return null;
   }
   return <Header />;
