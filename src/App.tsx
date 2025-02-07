@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import DossierPage from "./pages/DossierPage";
 import CostCalculator from "./pages/CostCalculator";
+import VisaFinder from "./pages/VisaFinder";
 
 const queryClient = new QueryClient();
 
@@ -73,6 +74,14 @@ const App = () => (
             element={
               <ProtectedRoute>
                 <CostCalculator />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/visa-finder" 
+            element={
+              <ProtectedRoute>
+                <VisaFinder />
               </ProtectedRoute>
             } 
           />
