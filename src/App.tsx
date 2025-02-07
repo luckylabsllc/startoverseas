@@ -115,6 +115,7 @@ const App = () => (
               </ProtectedRoute>
             } 
           />
+          {/* Catch all route - must be last */}
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Toaster />
