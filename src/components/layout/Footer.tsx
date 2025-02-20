@@ -1,59 +1,44 @@
-
 import { Link } from "react-router-dom";
 
-export function Footer() {
-  const footerLinks = {
-    Product: [
-      { name: "Features", href: "#features" },
-      { name: "Pricing", href: "#pricing" },
-      { name: "Download", href: "#download" },
-    ],
-    Company: [
-      { name: "About", href: "#about" },
-      { name: "Careers", href: "#careers" },
-      { name: "FAQ", href: "#faq" },
-    ],
-    Legal: [
-      { name: "Privacy", href: "#privacy" },
-      { name: "Terms", href: "#terms" },
-      { name: "Contact", href: "#contact" },
-    ],
-  };
-
+export const Footer = () => {
   return (
-    <footer className="border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container px-4 py-12 md:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="col-span-2 md:col-span-1">
-            <Link to="/" className="inline-block font-bold text-xl mb-4">
-              Overseas
-            </Link>
-            <p className="text-sm text-muted-foreground">
-              Your companion for everything overseas - from visas to cost of living.
-            </p>
+    <footer className="py-8 md:py-12 px-4 md:px-0">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="space-y-4">
+            <h3 className="font-semibold text-lg mb-2 dark:text-white">Company</h3>
+            <ul className="space-y-3">
+              <li><Link to="/about" className="text-muted-foreground hover:text-foreground dark:text-gray-400 dark:hover:text-white transition-colors">About</Link></li>
+              <li><Link to="/contact" className="text-muted-foreground hover:text-foreground dark:text-gray-400 dark:hover:text-white transition-colors">Contact</Link></li>
+              <li><Link to="/careers" className="text-muted-foreground hover:text-foreground dark:text-gray-400 dark:hover:text-white transition-colors">Careers</Link></li>
+            </ul>
           </div>
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h3 className="font-semibold mb-3">{category}</h3>
-              <ul className="space-y-2">
-                {links.map((link) => (
-                  <li key={link.name}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {link.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className="mt-12 pt-6 border-t text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Overseas. All rights reserved.</p>
+          <div className="space-y-4">
+            <h3 className="font-semibold text-lg mb-2 dark:text-white">Resources</h3>
+            <ul className="space-y-3">
+              <li><Link to="/blog" className="text-muted-foreground hover:text-foreground dark:text-gray-400 dark:hover:text-white transition-colors">Blog</Link></li>
+              <li><Link to="/guides" className="text-muted-foreground hover:text-foreground dark:text-gray-400 dark:hover:text-white transition-colors">Guides</Link></li>
+              <li><Link to="/support" className="text-muted-foreground hover:text-foreground dark:text-gray-400 dark:hover:text-white transition-colors">Support</Link></li>
+            </ul>
+          </div>
+          <div className="space-y-4">
+            <h3 className="font-semibold text-lg mb-2 dark:text-white">Legal</h3>
+            <ul className="space-y-3">
+              <li><Link to="/privacy" className="text-muted-foreground hover:text-foreground dark:text-gray-400 dark:hover:text-white transition-colors">Privacy</Link></li>
+              <li><Link to="/terms" className="text-muted-foreground hover:text-foreground dark:text-gray-400 dark:hover:text-white transition-colors">Terms</Link></li>
+              <li><Link to="/cookies" className="text-muted-foreground hover:text-foreground dark:text-gray-400 dark:hover:text-white transition-colors">Cookies</Link></li>
+            </ul>
+          </div>
+          <div className="space-y-4">
+            <h3 className="font-semibold text-lg mb-2 dark:text-white">Social</h3>
+            <ul className="space-y-3">
+              <li><a href="#" className="text-muted-foreground hover:text-foreground dark:text-gray-400 dark:hover:text-white transition-colors">Twitter</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-foreground dark:text-gray-400 dark:hover:text-white transition-colors">LinkedIn</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-foreground dark:text-gray-400 dark:hover:text-white transition-colors">Facebook</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </footer>
   );
-}
+};

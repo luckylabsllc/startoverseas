@@ -1,85 +1,122 @@
-
-import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, X } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Sun, Moon, User } from "lucide-react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/components/ui/use-toast";
 
-export function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+export const Header = () => {
+  const [isDark, setIsDark] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
-  const navItems = [
-    { name: "Tools", href: "#tools" },
-    { name: "Benefits", href: "#benefits" },
-    { name: "Pricing", href: "#pricing" },
-  ];
+  useEffect(() => {
+    const isDarkMode = document.documentElement.classList.contains('dark');
+    setIsDark(isDarkMode);
+
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+
+    // Check initial auth state
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsAuthenticated(!!session);
+    });
+
+    // Subscribe to auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsAuthenticated(!!session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = !isDark;
+    setIsDark(newTheme);
+    document.documentElement.classList.toggle('dark');
+  };
+
+  const handleSignOut = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      navigate('/', { replace: true });
+      toast({
+        title: "Signed out successfully",
+        description: "Come back soon!",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to sign out. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleProfileClick = () => {
+    if (isAuthenticated) {
+      navigate('/dashboard', { replace: true });
+    } else {
+      navigate('/signin', { replace: true });
+    }
+  };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b">
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center gap-6">
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
-                  <Menu className="h-5 w-5" />
-                  <span className="sr-only">Toggle menu</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-                <nav className="flex flex-col gap-4">
-                  {navItems.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="text-lg font-medium transition-colors hover:text-primary"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                  <Link
-                    to="/signin"
-                    className="text-lg font-medium transition-colors hover:text-primary"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Sign In
-                  </Link>
-                </nav>
-              </SheetContent>
-            </Sheet>
-            
-            <Link to="/" className="flex items-center space-x-2">
-              <span className="font-bold text-xl">Overseas</span>
-            </Link>
-
-            <nav className="hidden md:flex items-center gap-6">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-sm font-medium transition-colors hover:text-primary"
-                >
-                  {item.name}
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Link to="/signin">
-              <Button variant="ghost" className="hidden md:inline-flex">
-                Sign In
+    <header className="h-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+        <div className="flex items-center">
+          <Link to="/" className="font-mono font-bold text-3xl tracking-tight text-primary hover:animate-softBounce transition-all duration-300">
+            OVERSEAS
+          </Link>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="w-9 h-9 rounded-full"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {isDark ? (
+              <Sun className="h-4 w-4" />
+            ) : (
+              <Moon className="h-4 w-4" />
+            )}
+          </Button>
+          {isAuthenticated ? (
+            <>
+              <Button
+                variant="outline"
+                size="icon"
+                className="w-8 h-8 rounded-full border border-foreground/20 bg-black/5 dark:bg-white/5"
+                onClick={handleProfileClick}
+              >
+                <User className="h-4 w-4" />
               </Button>
-            </Link>
-            <Link to="/signup">
-              <Button className="bg-primary hover:bg-primary/90">
-                Get Started
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleSignOut}
+              >
+                Sign Out
               </Button>
-            </Link>
-          </div>
+            </>
+          ) : (
+            <Button
+              variant="outline"
+              size="icon"
+              className="w-8 h-8 rounded-full border border-foreground/20 bg-black/5 dark:bg-white/5"
+              onClick={handleProfileClick}
+            >
+              <User className="h-4 w-4" />
+            </Button>
+          )}
         </div>
       </div>
     </header>
   );
-}
+};
