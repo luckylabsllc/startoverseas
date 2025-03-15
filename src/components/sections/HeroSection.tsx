@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
@@ -70,8 +71,8 @@ export const HeroSection = () => {
       navigate(`/dossier/${encodeURIComponent(searchQuery)}`);
     }
   };
-  return <section className="relative text-center py-4 pb-6 space-y-3 overflow-visible bg-[3a29e5]">
-      <div className="absolute inset-0 bg-[#F5F5F7] -z-10" />
+  return <section className="relative text-center py-4 pb-6 space-y-3 overflow-visible bg-[#3a29e5]">
+      <div className="absolute inset-0 bg-[#3a29e5] -z-10" />
       
       <div className="pt-10">
         <div className="sticker mb-4">
