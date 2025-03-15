@@ -5,7 +5,6 @@ import { useState, useRef, useEffect } from "react";
 import { City, searchCities } from "@/lib/cities";
 import { cn } from "@/lib/utils";
 import { Globe, Sparkles } from "lucide-react";
-
 export const HeroSection = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,20 +14,16 @@ export const HeroSection = () => {
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout>();
-
   const handleSearch = async (value: string) => {
     setSearchQuery(value);
-    
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
-
     if (!value || value.length < 2) {
       setIsOpen(false);
       setResults([]);
       return;
     }
-
     timeoutRef.current = setTimeout(async () => {
       if (value.length >= 2) {
         setIsLoading(true);
@@ -40,16 +35,12 @@ export const HeroSection = () => {
       }
     }, 200);
   };
-
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (!isOpen) return;
-
     switch (e.key) {
       case "ArrowDown":
         e.preventDefault();
-        setSelectedIndex(prev => 
-          prev < results.length - 1 ? prev + 1 : prev
-        );
+        setSelectedIndex(prev => prev < results.length - 1 ? prev + 1 : prev);
         break;
       case "ArrowUp":
         e.preventDefault();
@@ -67,7 +58,6 @@ export const HeroSection = () => {
         break;
     }
   };
-
   const handleSelectCity = (city: City) => {
     const cityQuery = `${city.name}, ${city.country}`;
     setSearchQuery(cityQuery);
@@ -75,15 +65,12 @@ export const HeroSection = () => {
     setResults([]);
     inputRef.current?.blur();
   };
-
   const handleStartTravel = () => {
     if (searchQuery) {
       navigate(`/dossier/${encodeURIComponent(searchQuery)}`);
     }
   };
-
-  return (
-    <section className="relative text-center py-4 pb-6 space-y-3 overflow-visible">
+  return <section className="relative text-center py-4 pb-6 space-y-3 overflow-visible bg-[3a29e5]">
       <div className="absolute inset-0 bg-[#F5F5F7] -z-10" />
       
       <div className="pt-10">
@@ -105,50 +92,23 @@ export const HeroSection = () => {
           <div className="w-full max-w-md px-8 sm:px-0 relative sm:w-[90%] space-y-2.5">
             <div className="relative">
               <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-              <Input
-                ref={inputRef}
-                type="text"
-                placeholder="Country, city, or airport"
-                value={searchQuery}
-                onChange={(e) => handleSearch(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="h-14 pl-10 text-lg shadow-lg border-transparent focus:border-primary"
-              />
+              <Input ref={inputRef} type="text" placeholder="Country, city, or airport" value={searchQuery} onChange={e => handleSearch(e.target.value)} onKeyDown={handleKeyDown} className="h-14 pl-10 text-lg shadow-lg border-transparent focus:border-primary" />
             </div>
             
-            {isOpen && (
-              <div className="absolute w-full mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 max-h-[300px] overflow-y-auto z-50 transition-all duration-150">
-                {isLoading ? (
-                  <div className="px-4 py-3 text-muted-foreground">
+            {isOpen && <div className="absolute w-full mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 max-h-[300px] overflow-y-auto z-50 transition-all duration-150">
+                {isLoading ? <div className="px-4 py-3 text-muted-foreground">
                     Loading...
-                  </div>
-                ) : results.length > 0 ? (
-                  <div className="py-2">
-                    {results.map((city, index) => (
-                      <div
-                        key={`${city.name}-${city.country}`}
-                        className={cn(
-                          "px-4 py-3 cursor-pointer text-left flex justify-between items-center hover:bg-secondary transition-colors duration-150",
-                          selectedIndex === index && "bg-primary/10"
-                        )}
-                        onClick={() => handleSelectCity(city)}
-                      >
+                  </div> : results.length > 0 ? <div className="py-2">
+                    {results.map((city, index) => <div key={`${city.name}-${city.country}`} className={cn("px-4 py-3 cursor-pointer text-left flex justify-between items-center hover:bg-secondary transition-colors duration-150", selectedIndex === index && "bg-primary/10")} onClick={() => handleSelectCity(city)}>
                         <span>{city.name}, {city.country}</span>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="px-4 py-3 text-muted-foreground">
+                      </div>)}
+                  </div> : <div className="px-4 py-3 text-muted-foreground">
                     Type at least 2 characters
-                  </div>
-                )}
-              </div>
-            )}
+                  </div>}
+              </div>}
           </div>
           
-          <button 
-            onClick={handleStartTravel}
-            className="
+          <button onClick={handleStartTravel} className="
               px-8 py-4 
               text-lg font-bold text-[#fff8e7]
               bg-[#e03347] hover:bg-[#c92e40]
@@ -158,12 +118,10 @@ export const HeroSection = () => {
               hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8),inset_0_1px_4px_rgba(0,0,0,0.25)]
               transition-all duration-200
               transform hover:translate-y-[2px] hover:translate-x-[2px]
-            "
-          >
+            ">
             EXPLORE NOW
           </button>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
