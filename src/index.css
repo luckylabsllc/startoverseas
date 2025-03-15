@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -93,8 +94,59 @@
   .button-glow:hover::before {
     @apply opacity-40 animate-glow;
   }
+  
+  /* Dashboard specific styles */
+  .dashboard-card {
+    @apply bg-card border border-border/50 rounded-xl shadow-sm transition-all duration-300;
+  }
+  
+  .dashboard-card:hover {
+    @apply border-primary/20 shadow-md;
+  }
+  
+  .stat-value {
+    @apply text-2xl font-bold text-foreground;
+  }
+  
+  .stat-label {
+    @apply text-xs text-muted-foreground;
+  }
+  
+  .data-grid {
+    @apply grid gap-4 p-2;
+  }
 }
 
 .hover-lift {
   @apply transition-all duration-200 hover:-translate-y-1 hover:shadow-lg;
+}
+
+/* Animation for data loading */
+@keyframes countUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-count-up {
+  animation: countUp 0.5s ease-out forwards;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40 transition-colors;
 }
