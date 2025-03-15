@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
@@ -85,7 +84,7 @@ export const HeroSection = () => {
 
   return (
     <section className="relative text-center py-4 pb-6 space-y-3 overflow-visible">
-      <div className="absolute inset-0 bg-[#3a29e5] -z-10" />
+      <div className="absolute inset-0 bg-[#F5F5F7] -z-10" />
       
       <div className="pt-10">
         <div className="sticker mb-4">
@@ -94,11 +93,11 @@ export const HeroSection = () => {
         </div>
         
         <h1 className="text-5xl md:text-6xl font-[400] tracking-tight leading-[1.2] pb-1">
-          <span className="text-white">Your App for Everything</span>{" "}
-          <span className="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">Overseas</span>
+          <span className="text-gray-500">Your App for Everything</span>{" "}
+          <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Overseas</span>
         </h1>
         
-        <p className="text-base md:text-lg text-white/80 max-w-3xl mx-auto">
+        <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
           Discover the best places, visas, and costs—instantly.
         </p>
         
