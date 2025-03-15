@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
@@ -152,7 +151,7 @@ export const HeroSection = () => {
             className="
               px-8 py-4 
               text-lg font-bold text-[#fff8e7]
-              bg-[#3a29e5] hover:bg-[#2d20b8]
+              bg-[#e03347] hover:bg-[#c92e40]
               border border-black
               rounded-lg
               shadow-[4px_4px_0px_0px_rgba(0,0,0,0.8)]
