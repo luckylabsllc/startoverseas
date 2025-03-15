@@ -1,6 +1,5 @@
-
 import { DashboardCard } from "./DashboardCard";
-import { Coins, Percent, ChartLineUp } from "lucide-react";
+import { Coins, Percent, ChartLine } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
 export function FinancialOptimizerModule() {
@@ -57,7 +56,7 @@ export function FinancialOptimizerModule() {
 
         <div className="glass-card p-3">
           <div className="flex items-center mb-2">
-            <ChartLineUp className="h-4 w-4 mr-2 text-primary" />
+            <ChartLine className="h-4 w-4 mr-2 text-primary" />
             <h3 className="font-semibold">Cost Comparison</h3>
           </div>
           
